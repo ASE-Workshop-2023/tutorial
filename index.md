@@ -9,6 +9,7 @@ layout: workshop
   <a href="{{ site.ase_workshop }}">Open Science with Atomic Simulation Environment</a> workshop 
   held in Daresbury Laboratory, UK.
 </p> 
+
 <p>
   This website is based on a template developed by <a href="{{ site.carpentries_site }}">The Carpentries</a> and is licensed under <a href="{{ site.cc_by_human }}">CC-BY 4.0</a>.
 </p>
