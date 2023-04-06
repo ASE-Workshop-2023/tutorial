@@ -31,7 +31,7 @@ instructor: ["Pietro Delugas", "Adam Jackson", "Lucy Whalley"] # boxed, comma-se
 
 <h2 id="schedule">Schedule</h2>
 
-{% include custom-schedule.html %}
+{% include schedule.html %}
 
 <hr/>
 
