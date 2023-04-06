@@ -29,11 +29,8 @@ instructor: ["Pietro Delugas", "Adam Jackson", "Lucy Whalley"] # boxed, comma-se
 > Software Carpentry course.
 {: .prereq}
 
-<h2 id="schedule">Schedule</h2>
-
 {% include schedule.html %}
 
-<hr/>
 
 
 
