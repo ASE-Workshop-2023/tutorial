@@ -18,7 +18,7 @@ helper: ["helper one", "helper two"]     # boxed, comma-separated list of helper
 
 <h2 id="schedule">Schedule</h2>
 
-{% include custom-schedule.html %}
+{% include schedule.html %}
 
 <hr/>
 
