@@ -40,6 +40,7 @@ carpentries_site: "https://carpentries.org/"
 workshop_repo: "https://github.com/carpentries/workshop-template"
 cc_by_human: "https://creativecommons.org/licenses/by/4.0/"
 ase_workshop: "https://ase-workshop-2023.github.io"
+swc_python_site: "https://swcarpentry.github.io/python-novice-inflammation/"
 
 # Surveys.
 pre_survey: ""
