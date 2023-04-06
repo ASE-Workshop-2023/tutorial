@@ -8,3 +8,5 @@ This repository is based on [The Carpentries template](https://github.com/carpen
 If you would like to create a website in a similar style 
 you most likely want to use that as a starting point.
 
+For formatting hints, see this webpage: http://swcarpentry.github.io/swc-releases/2017.02/lesson-example/fig/episode-format.png
+
