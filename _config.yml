@@ -5,15 +5,15 @@
 # Settings below not relevant for the ASE workshop
 # More detailed instructions are available at:
 # https://carpentries.github.io/workshop-template/customization/index.html
-carpentry: ""
-curriculum: ""
+carpentry: 
+curriculum: 
 flavor: ""
 pilot: false
 
 
 title: "Open Science with ASE: Core Tutorials"
 # short title will be displayed in tab text
-short_title: "ASE 2023"
+short_title: "ASE tutorials"
 
 #------------------------------------------------------------
 # Generic settings (should not need to change).

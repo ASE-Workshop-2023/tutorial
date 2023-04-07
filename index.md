@@ -1,4 +1,5 @@
 ---
+title: ASE tutorials
 layout: workshop      
 instructor: ["Pietro Delugas", "Adam Jackson", "Lucy Whalley"] # boxed, comma-separated list of instructors' names as strings, like ["Kay McNulty", "Betty Jennings", "Betty Snyder"]
 # helper: ["helper one", "helper two"]     # boxed, comma-separated list of helpers' names, like ["Marlyn Wescoff", "Fran Bilas", "Ruth Lichterman"]
