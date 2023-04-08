@@ -25,6 +25,7 @@ When working with ASE molecules and materials are represented by the `Atoms` cla
 
 TODO: describe here some OOP terminology: class, object, instance, method, function.
 
+
 ## The `Calculator` class calculates basic properties of an `Atoms` object
 
 ## ASE plays nicely with a variety of atomistic modelling tools

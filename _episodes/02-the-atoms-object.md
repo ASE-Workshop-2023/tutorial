@@ -207,8 +207,10 @@ where `[TAB]` means "hit the TAB key". You should see that the `Atoms` object ha
 
 Not all of them ll work until we start using the `Calculator` class, but the rest of this tutorial should include some useful ones.
 
-> ## Exercise
+> ## Exercise: Atom features
 > Use tab-completion and docstrings to explore the features of `Atoms`. In the 
 > ZnS structure, find the distance between the first Zn atom and the four S
 > atoms. Are some of them nearer than others?
+>
+> *Hint: you may need to use the "minimum image convention"*
 {: .challenge}
