@@ -153,7 +153,7 @@ bands_structure.plot(emin=-6, emax=15)
 ~~~
 {: .python}
 
-![](./fig/band_structure_Si.png)
+![](../fig/band_structure_Si.png)
 
 Now we setup the calcutator for computing the DOS, in this case we will perform first an nscf calculation with a symmetrized, denser  MP grid. 
 
@@ -182,4 +182,4 @@ plt.show()
 ~~~
 {: .python}
 
-![](./fig/DOS_Si.png)
+![](../fig/DOS_Si.png)
