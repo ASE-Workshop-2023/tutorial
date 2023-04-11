@@ -1,5 +1,5 @@
 ---
-title: "Electronic Band Structures"
+title: "Properties: electronic structure"
 teaching: 20
 exercises: 20
 questions:
@@ -7,9 +7,12 @@ objectives:
 keypoints:
 ---
 
-## Total energy and bandstructure calculation
+## Properties: Total energy and bandstructure calculation
 
+Seen some basic properties, now calculating more advanced workflow for commonly used end: bandstructure and DOS.
 Tutorial with  first examples of how setting up an espresso  calculator and perform a Total Energy and bast structure calculations. 
+
+## Total energy and bandstructure calculation
 
 ## Set up the system
 
@@ -183,3 +186,6 @@ plt.show()
 {: .python}
 
 ![](../fig/DOS_Si.png)
+
+## TODO
+- exercise to calculate the silicon vacancy bandstructure?

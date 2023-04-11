@@ -30,5 +30,11 @@ TODO: describe here some OOP terminology: class, object, instance, method, funct
 
 ## ASE plays nicely with a variety of atomistic modelling tools
 
+## Structure of the course
+
+- atoms object
+- then the calculators (three types?)
+- class diagram
+
 
 

@@ -1,11 +1,13 @@
 ---
-title: "External calculators"
+title: "Dynamics: geometry optimisation"
 teaching: 20
 exercises: 20
 questions:
 objectives:
 keypoints:
 ---
+
+## Dynamics
 
 ## External library calculators
 
@@ -44,6 +46,12 @@ ax.set_ylabel('Energy / eV')
 ~~~
 {: .python}
 
-![](./fig/energy_random_walk_plot.png)
+![](../fig/energy_random_walk_plot.png)
 
 This is a bit more expensive than EMT but still a lot cheaper than density-functional theory! A lot of work goes into developing a new potential, but with tools like quippy and ASE it is fairly easy for researchers to pick up the resulting model and apply it.
+
+## TODO
+
+- geometry relaxation of silicon vacancy (see https://libatoms.github.io/QUIP/Tutorials/quippy-ase-interoperability.html)
+- MD amorphous silicon? (https://pubs.acs.org/doi/10.1021/acs.jpclett.8b00902)
+- exercise?

@@ -198,7 +198,7 @@ axes[1].set_xlabel('number of k-points')
 ~~~
 {: .python}
 
-![](./fig/convergence_kpoint.png)
+![](../fig/convergence_kpoint.png)
 
 For this calculation, the computational cost per k-point is roughly linear, but the energy convergence is slow. We have multiple cores available, but how do we use them?
 
@@ -275,7 +275,7 @@ axes[2].set_xlabel('number of k-points')
 ~~~
 {: .python}
 
-![](./fig/convergence_kpoint_parallel.png)
+![](../fig/convergence_kpoint_parallel.png)
 
 Hopefully, running in parallel did not change the results! We see that the parallel calculation is faster, but not 4 times faster.
 

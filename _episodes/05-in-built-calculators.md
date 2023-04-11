@@ -101,7 +101,7 @@ _ = ax.set_ylabel('Energy / eV')
 ~~~
 {: .python}
 
-![](./fig/energy_spacing_plot.png)
+![](../fig/energy_spacing_plot.png)
 
 This somewhat resembles the Equation-of-State (EOS) curve for a solid. To see how you can fit a standard EOS model to a 3-D system and obtain an equilibrium volume, see the relevant [ASE tutorial](https://wiki.fysik.dtu.dk/ase/tutorials/eos/eos.html).
 

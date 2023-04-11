@@ -1,8 +1,8 @@
 ---
 title: ASE tutorials
 layout: workshop      
-instructor: ["Pietro Delugas", "Adam Jackson", "Lucy Whalley"] # boxed, comma-separated list of instructors' names as strings, like ["Kay McNulty", "Betty Jennings", "Betty Snyder"]
-# helper: ["helper one", "helper two"]     # boxed, comma-separated list of helpers' names, like ["Marlyn Wescoff", "Fran Bilas", "Ruth Lichterman"]
+instructor: ["Pietro Delugas", "Adam Jackson", "Lucy Whalley"] 
+# helper: ["helper one", "helper two"]     
 ---
 
 > ## General Information
@@ -14,13 +14,16 @@ instructor: ["Pietro Delugas", "Adam Jackson", "Lucy Whalley"] # boxed, comma-se
 {: .callout}
 
 > ## Setup and pre-requisites
-> To participate in the workshop tutorials you will need an up-to-date web browser 
+> To participate in the tutorials at the 
+> <a href="{{ site.ase_workshop }}">Open Science with Atomic Simulation Environment</a>
+> workshop you will need an up-to-date web browser 
 > (we recommend Mozilla Firefox or Google Chrome) and
 > access to the internet. 
 > The latter will be provided via the eduroam service. 
 > If you have problems accessing eduroam, 
 > please contact the workshop organisers and alternative
 > arrangements will be made.
+>
 > 
 > This tutorial assumes that you have no prior knowledge of ASE; it is
 > aimed at complete beginners. We do assume you have basic familiarity with
@@ -29,6 +32,15 @@ instructor: ["Pietro Delugas", "Adam Jackson", "Lucy Whalley"] # boxed, comma-se
 > <a href="{{ site.swc_python_site }}">Programming with Python</a> 
 > Software Carpentry course.
 {: .prereq}
+
+> ## Jupyter Notebooks
+> Throughout the tutorial you will see references to [Jupyter Notebook](https://jupyter.org/).
+> However the large majority of content can be followed using either Jupyter Notebook, 
+> an [IPython interpreter](https://ipython.org/) or a plain-vanilla 
+> [Python interpreter](https://www.python.org/). The choice is yours, however 
+> if you are new to Python programming we recommend [Anaconda](https://www.anaconda.com/), which 
+> installs all three options in addition to a range of Python libraries for scientific computing.
+{: .callout}
 
 {% include schedule.html %}
 
