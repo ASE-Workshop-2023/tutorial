@@ -17,24 +17,68 @@ keypoints:
 
 ## ASE is a Python library for atomistic modelling
 
-ASE is Python library for _atomistic modelling_; systems are fundamentally described by a set of atomic positions, and calculations are derived from these.
+The atomic simulation environment (ASE) is Python library for _atomistic modelling_; it allows you to set up, run and analyse atomistic simulations using Python scripts. Systems are described by a set of atomic positions, and calculations are derived from these.
+
+> ## NumPy
+> ASE makes strong use of [NumPy arrays](). NumPy arrays have a host of useful features such as
+> array slicing, and ensure that there is efficient performance even for thousands or millions
+> of atoms. If you are unfamiliar with NumPy arrays there is a 
+> brief overview on the [ASE website]().
+{: .callout}
 
 ## The `Atoms` class is used to represent molecules and materials
 
-When working with ASE molecules and materials are represented by the `Atoms` class. 
+When working with ASE, molecules and materials are represented by an `Atoms` object. 
+This represents (at minimum) a collection of atoms of any chemical species and associated positions
 
-TODO: describe here some OOP terminology: class, object, instance, method, function.
+> ## Object oriented programming
+> ASE uses several design patterns from object oriented programming (OOP). 
+> You do not need to be familiar with the intricacies of OOP to start coding with
+> ASE, however some basic terminology is useful.
+> - An *object* is an combination of data alongside operations for manipulating and returning information on that data.
+> - A *class* is a category of objects - for example, `Composer()`.
+> - An *instance* is an object that belongs to a class - for example, the instance `beethoven` belongs to the class `Composer`.
+> - A *method* is a fuction that belongs to an object - for example, the class `Composer`  contains the function `count_symphonies()`.
+> 
+> First we create an instance of a class
+>
+> ~~~
+> beethoven = Composer()
+> ~~~
+> {: .python}
+> Then we can access the associated data and methods
+> ~~~
+> beethoven.count_symphonies()
+> ~~~
+> {: .python}
+> ~~~
+> 9
+> ~~~
+> {: .output}
+{: .callout}
 
 
 ## The `Calculator` class calculates basic properties of an `Atoms` object
 
+A `Calculator` object can be attached to an `Atoms` object. The `Calculator` takes the atomic numbers and positions from `Atoms` and calculates basic properties such as energy or forces. `Calculator` objects can themselves be split into three types: i) in-built calculators that run the simulation within the same Python interpreter process; ii) file-based calculators that run the simulation as a sub-process, with communication mediated through input and output files; iii) calculators that run the simulation as a sub-process, with communication via pipes. Each approach has its own advantages and limitations which will be outlined later in the course.
+
+> ## Further information
+> For further information about code structure, implementation and features we recommend
+> reading [this topical review](https://dx.doi.org/10.1088/1361-648X/aa680e) from Larsen et al.
+{: .callout}
+
 ## ASE plays nicely with a variety of atomistic modelling tools
 
-## Structure of the course
+The modular design of ASE allows it to play nicely with ("interoperate") with many different atomistic simulation codes. This includes codes implementing density functional theory, (semi-)empirical methods, tight-binding models and classical interatomic potentials. For a full list of supported codes please see the [ASE documentation]().
 
-- atoms object
-- then the calculators (three types?)
-- class diagram
+> ## Course structure
+> The structure of this course is designed to reflect the structure of ASE. 
+> First we introduce the `Atoms` object (chapters 2-4) and `Calculators` object (chapters 5-6). 
+> We then outline how to simulate more complex and computationally demanding systems by parallelising over multiple compute cores (chapter 7). 
+> Finally we apply our understanding to two common-use tasks: geometric minimisation (chapter 8) and a bandstructure calculation (chapter 9).
+{: .callout}
+
+
 
 
 
