@@ -12,3 +12,5 @@ keypoints:
 - Fun stuff and recipes in the ASE tutorials.
 - Hackathons: contributing to development?
 - When and how to ask for help? (Gitlab issues)
+- https://wiki.fysik.dtu.dk/gpaw/summerschools/summerschool22/summerschool22.html
+
