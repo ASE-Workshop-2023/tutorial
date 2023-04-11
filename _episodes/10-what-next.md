@@ -13,4 +13,6 @@ keypoints:
 - Hackathons: contributing to development?
 - When and how to ask for help? (Gitlab issues)
 - https://wiki.fysik.dtu.dk/gpaw/summerschools/summerschool22/summerschool22.html
+- citing ASE!
+- reading the paper from Ask.
 

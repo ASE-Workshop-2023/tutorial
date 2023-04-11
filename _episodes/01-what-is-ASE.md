@@ -7,7 +7,7 @@ questions:
 objectives:
 - "List the key features of ASE"
 - "Identify and describe the core ASE classes"
-- "Understand how ASE fits within the larger atomistic modelling software ecosystem"
+- "Describe how ASE fits within the larger atomistic modelling software ecosystem"
 keypoints:
 - "ASE is a Python library for atomistic modelling"
 - "The `Atoms` class is used to represent molecules and materials"
@@ -17,7 +17,8 @@ keypoints:
 
 ## ASE is a Python library for atomistic modelling
 
-The atomic simulation environment (ASE) is Python library for _atomistic modelling_; it allows you to set up, run and analyse atomistic simulations using Python scripts. Systems are described by a set of atomic positions, and calculations are derived from these.
+- The atomic simulation environment (ASE) is Python library for _atomistic modelling_; it allows you to set up, run and analyse atomistic simulations using Python scripts. 
+- Systems are described by a set of atomic positions, and calculations are derived from these.
 
 > ## NumPy
 > ASE makes strong use of [NumPy arrays](). NumPy arrays have a host of useful features such as
@@ -28,8 +29,8 @@ The atomic simulation environment (ASE) is Python library for _atomistic modelli
 
 ## The `Atoms` class is used to represent molecules and materials
 
-When working with ASE, molecules and materials are represented by an `Atoms` object. 
-This represents (at minimum) a collection of atoms of any chemical species and associated positions
+- When working with ASE, molecules and materials are represented by an `Atoms` object. 
+- `Atoms` represents (at minimum) a collection of atoms of any chemical species and associated positions
 
 > ## Object oriented programming
 > ASE uses several design patterns from object oriented programming (OOP). 
@@ -40,19 +41,21 @@ This represents (at minimum) a collection of atoms of any chemical species and a
 > - An *instance* is an object that belongs to a class - for example, the instance `beethoven` belongs to the class `Composer`.
 > - A *method* is a fuction that belongs to an object - for example, the class `Composer`  contains the function `count_symphonies()`.
 > 
-> First we create an instance of a class
+> First we create an instance of a class:
 >
 > ~~~
-> beethoven = Composer()
+> beethoven = Composer(birth_year=1770)
 > ~~~
 > {: .python}
-> Then we can access the associated data and methods
+> Then we can access the associated methods and data:
 > ~~~
-> beethoven.count_symphonies()
+> print(beethoven.count_symphonies())
+> print(beethoven.birth_year)
 > ~~~
 > {: .python}
 > ~~~
 > 9
+> 1770
 > ~~~
 > {: .output}
 {: .callout}
@@ -60,7 +63,11 @@ This represents (at minimum) a collection of atoms of any chemical species and a
 
 ## The `Calculator` class calculates basic properties of an `Atoms` object
 
-A `Calculator` object can be attached to an `Atoms` object. The `Calculator` takes the atomic numbers and positions from `Atoms` and calculates basic properties such as energy or forces. `Calculator` objects can themselves be split into three types: i) in-built calculators that run the simulation within the same Python interpreter process; ii) file-based calculators that run the simulation as a sub-process, with communication mediated through input and output files; iii) calculators that run the simulation as a sub-process, with communication via pipes. Each approach has its own advantages and limitations which will be outlined later in the course.
+- A `Calculator` object can be attached to an `Atoms` object. 
+- The `Calculator` takes the atomic numbers and positions from `Atoms` and calculates basic properties such as energy or forces. 
+- `Calculator` objects can themselves be split into three types: 
+	- in-built calculators that run the simulation within the same Python interpreter process. - file-based calculators that run the simulation as a sub-process, with communication mediated through input and output files.
+	- calculators that run the simulation as a sub-process, with communication via pipes. Each approach has its own advantages and limitations which will be outlined later in the course.
 
 > ## Further information
 > For further information about code structure, implementation and features we recommend
@@ -69,7 +76,9 @@ A `Calculator` object can be attached to an `Atoms` object. The `Calculator` tak
 
 ## ASE plays nicely with a variety of atomistic modelling tools
 
-The modular design of ASE allows it to play nicely with ("interoperate") with many different atomistic simulation codes. This includes codes implementing density functional theory, (semi-)empirical methods, tight-binding models and classical interatomic potentials. For a full list of supported codes please see the [ASE documentation]().
+- The modular design of ASE allows it to play nicely with ("interoperate") with many different atomistic simulation codes. 
+- This includes codes implementing density functional theory, (semi-)empirical methods, tight-binding models and classical interatomic potentials. 
+- For a full list of supported codes please see the [ASE documentation]().
 
 > ## Course structure
 > The structure of this course is designed to reflect the structure of ASE. 
