@@ -1,7 +1,7 @@
 ---
 title: "Building and Manipulating Atoms"
-teaching: 20
-exercises: 20
+teaching: 25
+exercises: 25
 questions:
     - "How can I build molecules and bulk structures without specifying all atomic positions?"
     - "How can I create supercells?"
@@ -21,7 +21,7 @@ keypoints:
     - "Methods and operations can be used to create point defects"
 ---
 
-> Code connection
+> ## Code connection
 > In this chapter we explore the [`ase.build` module](https://wiki.fysik.dtu.dk/ase/ase/build/build.html), which contains tools for building structures using parameters rather than detailed lists of positions.
 {: .callout}
 

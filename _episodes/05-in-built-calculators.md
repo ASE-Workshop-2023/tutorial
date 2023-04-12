@@ -1,25 +1,55 @@
 ---
 title: "Built-in calculators"
 teaching: 20
-exercises: 20
+exercises: 25
 questions:
+    - "How can I calculate energy, stress and forces using an built-in calculator?"
+    - "How can I find the optimal bonding length for a simple metallic system?"
+    - "How can I store and share property data?"
 objectives:
+    - "Calculate properties using a built-in `Calculator` object"
+    - "Identify the optimum bonding length for a simple metallic system"
 keypoints:
+    - "Atoms objects can calculate properties using an attached `Calculator`"
+    - "Properties of metal alloy systems can be calculated using Effective Medium Theory"
+    - "Calculators can calculate properties in three easy steps"
+    - "Scientific Python libraries allow us to fit models to our calculations"
+    - "The EMT Calculator can also be used to obtain forces and unit cell stress"
+    - "Where possible request a standalone set of property data"
+    - "The Lennard-Jones potential can be used to model the interaction between two non-bonding atoms or molecules"
 ---
 
-### Atoms objects can calculate  properties using an attached "Calculator"
+> ## Code connection
+> In this chapter we explore the [`ase.calculatorse.emt` module](https://wiki.fysik.dtu.dk/ase/ase/calculators/emt.html#module-ase.calculators.emt) and [`ase.calculatorse.lj` module](https://wiki.fysik.dtu.dk/ase/ase/calculators/others.html#module-ase.calculators.lj), both of which provide built-in tools for calculating standard properties (energy, forces and stress) from a set of atomic positions.
+{: .callout}
 
-Many software packages can be used to calculate properties from a set of atomic positions. In ASE, Atoms objects can try to calculate or fetch properties using an attached "Calculator".
+### Atoms objects can calculate properties using an attached "Calculator"
 
-Here we make tour of a variety of Calculators, highlighting some of the differences between them. A master list of the available Calculators can be found [here](https://wiki.fysik.dtu.dk/ase/ase/calculators/calculators.html).
+- In ASE, `Atoms` objects can try to calculate or fetch properties using an attached `Calculator`.
+- In this tutorial we will make tour of a variety of Calculators, highlighting some of the differences between them. 
+- A master list of the available Calculators can be found [here](https://wiki.fysik.dtu.dk/ase/ase/calculators/calculators.html).
 
-### In-built calculators: simple potential models (EMT, LJ)
+### Properties of metal alloy systems can be calculated using Effective Medium Theory
 
-Much of the ASE documentation and tutorials makes use of the [inbuilt "EMT" calculator](https://wiki.fysik.dtu.dk/ase/ase/calculators/emt.html#pure-python-emt-calculator) - because it is convenient and "fast enough"!
+> ## Warning
+> If you want to do a real application using EMT, you should used the much more efficient implementation in the [ASAP calculator](https://wiki.fysik.dtu.dk/asap).
+{: .callout}
 
-This implements the Effective Medium Theory potential for Ni, Cu, Pd, Ag, Pt and Au. Some other elements are included "for fun", but really this is a method for alloys of those metals. For more information see this documentation and references for the (more efficient) implementation in the ASAP code: https://wiki.fysik.dtu.dk/asap/EMT
+- Much of the ASE documentation and tutorials makes use of the [built-in "EMT" calculator](https://wiki.fysik.dtu.dk/ase/ase/calculators/emt.html#pure-python-emt-calculator)
+- This is because it is convenient and "fast enough"
+- EMT implements the Effective Medium Theory potential for Ni, Cu, Pd, Ag, Pt and Au. 
+- Some other elements are included "for fun", but really this is a method for alloys of those metals. 
 
-Considering the case of an infinite gold wire:
+### Calculators can calculate properties in three easy steps
+
+- EMT can be used to calculate, for example, the energy of an infinite gold wire.
+- The first step is to create an `Atoms` object describing a gold wire which is infinite in the x-direction.
+
+> ## Python tip
+> You may not recognise or understand the syntax used in the function definition, for example
+> `spacing: float = 2.5`. These are optional [Type Hints](https://peps.python.org/pep-0484/
+), and the syntax for this was defined relatively recently. 
+{: .callout}
 
 ~~~
 from ase import Atoms
@@ -35,7 +65,20 @@ def make_wire(spacing: float = 2.5,
     return wire
 
 atoms = make_wire()
+show(atoms)
+~~~
+
+<img src="../fig/Gold_wire.png" alt="image of gold wire" width="100">
+
+- The second step is to attach the calculator of choice, in this case `EMT()`
+
+~~~
 atoms.calc = EMT()
+~~~
+
+- The third and final step is to call a "getter" method for the property of choice, in this case the potential energy.
+
+~~~
 energy = atoms.get_potential_energy()
 print(f"Energy: {energy} eV")
 ~~~
@@ -46,30 +89,25 @@ Energy: 0.9910548478768826 eV
 ~~~
 {: .output}
 
-~~~
-import nglview
-
-def show(atoms: Atoms) -> None:    
-    view = nglview.show_ase(atoms)
-    if any(atoms.pbc):
-        view.add_unitcell()
-    return view
-
-show(atoms)
-~~~
-{: .python}
-
 > ## Discussion
 > Why did we need the parentheses () in the line `atoms.calc = EMT()`?
 {: .discussion}
 
-What can we do with an energy? We could look at how it varies with the atom spacing and fit a model.
+### Scientific Python libraries allow us to fit models to our calculations
+
+- We can use the workflow above to investigate how energy varies with the atom spacing and fit a model.
+- First we wrap the workflow up within a single function which returns the energy for a given atom spacing.
+
+> ## Python tip
+> if you need to apply a function to each element of some data, `map` can provide an elegant alternative to for-loops and list comprehensions!
+{: .callout}
+
 
 ~~~
 import numpy as np
 distances = np.linspace(2., 3., 21)
 
-def get_energy(spacing):
+def get_energy(spacing: float) -> float:
     atoms = make_wire(spacing=spacing)
     atoms.calc = EMT()
     return atoms.get_potential_energy()
@@ -78,21 +116,23 @@ energies = list(map(get_energy, distances))
 ~~~
 {: .python}
 
-> ## Python tip
-> if you need to apply a function to each element of some data, `map` can provide an elegant alternative to for-loops and list comprehensions!
-{: .callout}
+- Second we use Numpy to fit a polynomial to the generated data
 
 ~~~
 from numpy.polynomial import Polynomial
 fit = Polynomial.fit(distances, energies, 3)
-x = np.linspace(2., 3., 500)
 ~~~
 {: .python}
 
+- Finally we use Matplotlib to visualise the data and fit
+
 ~~~
 %matplotlib inline
+
 import matplotlib.pyplot as plt
 fig, ax = plt.subplots()
+x = np.linspace(2., 3., 500)
+
 _ = ax.plot(distances, energies, 'o', label='calculated')
 _ = ax.plot(x, fit(x), '-', label='cubic')
 _ = ax.legend()
@@ -101,11 +141,14 @@ _ = ax.set_ylabel('Energy / eV')
 ~~~
 {: .python}
 
-![](../fig/energy_spacing_plot.png)
+<img src="../fig/energy_spacing_plot.png" alt="energy vs spacing plot for gold wire" width="600">
 
-This somewhat resembles the Equation-of-State (EOS) curve for a solid. To see how you can fit a standard EOS model to a 3-D system and obtain an equilibrium volume, see the relevant [ASE tutorial](https://wiki.fysik.dtu.dk/ase/tutorials/eos/eos.html).
+> ## Exercise: Equation of State for bulk gold
+> The plot above resembles the Equation-of-State (EOS) curve for a solid. 
+> Using a similar workflow and [`EquationOfState`](https://wiki.fysik.dtu.dk/ase/ase/eos.html) class, fit an equation of state to bulk gold and obtain an equilibrium volume.
+{: .challenge}
 
-The EMT Calculator can also be used to obtain forces and unit cell stress:
+### The EMT Calculator can also be used to obtain forces and unit cell stress
 
 ~~~
 print("Forces: ")
@@ -128,7 +171,7 @@ Stress:
 > Why are the forces exactly zero for this system?
 {: .discussion}
 
-Energy, forces and stress are standard "properties" in ASE, and we can check which properties are implemented by a particular calculator by inspecting the `implemented properties` attribute:
+- We can check which properties are implemented by a particular calculator by inspecting the `implemented properties` attribute:
 
 ~~~
 print(EMT.implemented_properties)
@@ -144,9 +187,12 @@ print(EMT.implemented_properties)
 > Why do we *not* need to include parenthesis () here? Do we expect `EMT().implemented_properties` to work as well as `EMT.implemented_properties`?
 {: .discussion}
 
-It can be convenient to have e.g. forces attached to a particular Atoms object in this way, and will be used heavily by dynamics and optimizer routines in the next tutorial.
+### Where possible request a standalone set of property data
 
-However, for Open Science purposes it is easier to store and share data that is not connected to a Calculator. (As we shall see later, Calculators might depend on a particular machine environment, memory state or software license.) We can request a standalone set of property data with e.g.:
+- It is sometimes convenient to have properties attached to a particular `Calculator` object.
+- For example, forces are used heavily by dynamics and optimizer routines, as we will see in the next tutorial.
+- However for Open Science purposes it is easier to store and share data that is not connected to a `Calculator`. This is because Calculators might depend on a particular machine environment, memory state or software license. 
+- We can request a standalone set of property data with `get_properties`.
 
 ~~~
 properties = atoms.get_properties(['energy', 'forces', 'stress'])
@@ -160,15 +206,16 @@ print(properties)
 ~~~
 {: .output}
 
-This will not change even if the Atoms object is modified and properties are recalculated.
+- Importantly, this will not change even if the `Atoms` object is modified and properties are recalculated.
 
 > ## Warning
 > This is a new feature and does not yet work well for all calculators.
 {: .callout}
 
-#### Lennard-Jones
+### The Lennard-Jones potential can be used to model the interaction between two non-bonding atoms or molecules
 
-The classic [Lennard-Jones potential](https://en.wikipedia.org/wiki/Lennard-Jones_potential) is implemented in `ase.calculators.lj`. You can set the $\epsilon$ and $\sigma$ parameters in the Calculator constructor:
+- The classic [Lennard-Jones potential](https://en.wikipedia.org/wiki/Lennard-Jones_potential) is implemented in `ase.calculators.lj`. 
+- You can set the $\epsilon$ and $\sigma$ parameters in the Calculator constructor:
 
 ~~~
 from ase.calculators.lj import LennardJones
@@ -196,7 +243,7 @@ array([[ 0.00000000e+00,  0.00000000e+00, -6.49886649e-16],
 {: .discussion}
 
 > ## Exercise: Lennard-Jones binding curve
-> Try choosing a value of sigma and varying the distance between the atoms. Can you reproduce the classic plot of a Lennard-Jones binding curve?
+> Try varying the distance between the atoms. Can you reproduce the classic plot of a Lennard-Jones binding curve?
 {: .challenge}
 
 

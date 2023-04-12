@@ -1,20 +1,39 @@
 ---
 title: "File based calculators"
-teaching: 20
-exercises: 20
+teaching: 15
+exercises: 15
 questions:
+       - "How can I calculate energy, stress and forces using a file based calculator?"
+       - "How does a file-based calculator work behind the scenes?"
+       - "When does ASE cache results from a calculation?"
 objectives:
+       - "Calculate properties using a file-based `Calculator` object"
+       - "Understand how file-based calculators work behind the scenes"
+       - "Understand when results can be retrieved from the cache, and when they will be re-calculated"
 keypoints:
+       - "Typical academic codes are controlled by _input files_ and write their results to _output files_"
+       - "The workflow for file-based and built-in calculators are the same"
+       - "However behind the scenes, file-based calculators work differently"
+       - "The Calculator object caches calculation results"
+       - "After changing a parameter the cache is invalidated"
 ---
 
-## File-based calculators
+> ## Code connection
+> In this chapter we explore the [`ase.calculators.mopac` module](https://databases.fysik.dtu.dk/ase/ase/calculators/mopac.html), which is a file-based calculator for calculating standard properties (energy, forces and stress) from a set of atomic positions.
+{: .callout}
 
-Typically academic codes are controlled by _input files_ and write their results to _output files_. This workflow is convenient for batch calculations on clusters (and for Fortran programmers...)
+## Typical academic codes are controlled by _input files_ and write their results to _output files_
 
-For such a code, the ASE Calculator needs to prepare appropriate input, call the executable and then read the output in order to give a similar workflow to the inbuilt Calculator above.
+- This workflow is convenient for batch calculations on clusters (and for Fortran programmers...)
+- To interoperate with this type of code, the ASE Calculator needs to: i) prepare appropriate input; ii) call the executable; iii) read the output
+- This will allow us to build a similar workflow to the built-in Calculators explored in the previous chapter.
 
-#### MOPAC
-Here we look at [MOPAC](https://openmopac.github.io), which implements semi-empirical methods with molecular orbitals in open boundary conditions. After a long history of versions and licenses it was recently updated and made open-source under the LGPL.
+### The workflow for file-based and built-in calculators are the same
+
+- The file-based calculator [MOPAC](https://openmopac.github.io) implements semi-empirical methods with molecular orbitals in open boundary conditions. 
+- After a long history of versions and licenses it was recently updated and made open-source under the LGPL.
+- To calculate a system energy we use the same workflow as introduced in the previous chapter.
+- First, we build an `Atoms` object
 
 ~~~
 import ase.build
@@ -23,9 +42,17 @@ show(atoms)
 ~~~
 {: .python}
 
+- Second, we attach a calculator: in this case, MOPAC.
+
 ~~~
 from ase.calculators.mopac import MOPAC
 atoms.calc = MOPAC(label='isopropyl-alcohol')
+~~~
+{: .python}
+
+- Third, we calculate an energy.
+
+~~~
 print("Energy: ", atoms.get_potential_energy())
 ~~~
 {: .python}
@@ -37,7 +64,7 @@ Energy:  -2.7842547352472047
 ~~~
 {: .output}
 
-We got an energy. Some data was also written to the Calculator `results`.
+- As part of this process some data was also written to the Calculator `results`.
 
 ~~~
 atoms.calc.results
@@ -70,24 +97,31 @@ atoms.calc.results
 > MOPAC is one of the calculators that doesn't support get_properties() yet... We can still get a nice results container this way, though!
 {: .callout}
 
-How did it do that? When we requested the potential energy, the Calculator generated an input file using the name we provided as *label*: "ispropyl-alcohol.mop". This is a human-readable file: take a look at it.
+### However behind the scenes, file-based calculators work differently
 
-The top line includes some parameters for the calculation:
-`> PM7 1SCF GRADIENTS DISP RELSCF=0.0001`
+- When we requested the potential energy, the Calculator generated an input file using the name we provided as *label*: "ispropyl-alcohol.mop". 
+- This is a human-readable file: you can take a look at it.
 
-including selection of the PM7 semi-empirical method and convergence tolerance. Below that are the atomic positions.
+~~~
+cat ispropyl-alcohol.mop
+~~~
 
-After writing the input, the calculation is run by calling the `mopac` executable: this should already be installed on the virtual machine for this tutorial.
-
-The results were written to "isopropyl-alcohol.out"; this is another human-readable file.
+- The top line includes some parameters for the calculation, including selection of the PM7 semi-empirical method and convergence tolerance.
+- Below that are the atomic positions.
+- After writing the input, the calculation is run by calling the `mopac` executable.
+- The results were written to "isopropyl-alcohol.out"; this is another human-readable file.
 
 > ## Exercise: Calculating energy and forces
 > Can you find the energy and forces in this file? Do they agree with the values from ASE?
 >
-> *Hint: ASE mostly uses units related to eV and Ångström*
+> Hint: ASE mostly uses units related to eV and Ångström
 {: .challenge}
 
-Next, we request the Forces:
+### The Calculator object caches calculation results
+
+- This means we can mostly use the property getters without worrying about wastefully running unnecessary calculations.
+- For example, we can request the forces and receive them instantly as no new calculation is required.
+- The forces were already present they are simply retrieved from the cache.
 
 ~~~
 print(atoms.get_forces())
@@ -110,7 +144,10 @@ print(atoms.get_forces())
 ~~~
 {: .output}
 
-This should give the results instantly: no new calculation was required! The Calculator object cached the results of the first calculation, and as forces were already present they are simply retrieved from the cache. This means we can mostly use the property getters without worrying about wastefully running unnecessary calculations.
+### After changing a parameter the cache is invalidated
+
+- For example, we can select the AM1 semi-empirical scheme for the calculation.
+- Now when the potential energy is requested, a new calculation is performed.
 
 ~~~
 atoms.calc.set(method='AM1')
@@ -124,8 +161,6 @@ MOPAC Job: "isopropyl-alcohol.mop" ended normally on Apr  3, 2023, at 21:29.
 -2.8723671252448977
 ~~~
 {: .output}
-
-After changing a parameter (in this case, selecting the AM1 semi-empirical scheme) the cache is invalidated. When the potential energy is requested, a new calculation is performed.
 
 > ## Discussion
 > What happens to calc.results when a parameter is changed? When might we prefer to use ``atoms.get_forces()` vs `atoms.calc.results['forces']`?
