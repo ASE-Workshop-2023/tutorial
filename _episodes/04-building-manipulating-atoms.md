@@ -3,15 +3,18 @@ title: "Building and Manipulating Atoms"
 teaching: 20
 exercises: 20
 questions:
+    - "How can I build structures without specifying all atomic positions?"
 objectives:
+    - "Build a molecule using the built-in database"
+    - "Build a crystal using built-in crystal structure types"
+    - "Build (optimal) supercell expansions"
+    - "Use NumPy array operations to remove, add or swap atom(s)"
 keypoints:
 ---
 
-### Building Atoms: more tools
+In this chapter we explore the [`ase.build` module](https://wiki.fysik.dtu.dk/ase/ase/build/build.html), which contains tools for building structures using parameters rather than detailed lists of positions.
 
-The `ase.build` module [(docs)](https://wiki.fysik.dtu.dk/ase/ase/build/build.html) contains tools for building structures using parameters rather than detailed lists of positions.
-
-### Molecules
+### A set of simple molecules are 
 Definitions for a set of simple molecules (the "G2" set, plus a few extra) are included with ASE. So in fact the easiest way to get an N2 molecule is
 
 ~~~
@@ -20,6 +23,8 @@ g2_n2 = ase.build.molecule('N2')
 show(g2_n2)
 ~~~
 { .python}
+
+TODO: look at the type to show it is `Atoms`
 
 And it's just as easy to get a buckyball! This feature is very useful for testing and trying things out.
 
@@ -201,58 +206,7 @@ show(antisite)
 ~~~
 {: .python}
 
-### Lists of Atoms
 
-Some I/O formats support a sequence of atoms. This is particularly common for molecular dynamics or geometry optimisation calculation outputs, but they can also be useful to store training data for model-fitting or machine-learning.
-
-For example to create a set of similar structures with small displacements:
-
-~~~
-atoms = ase.build.bulk('Cu', cubic=True) * 2
-
-atoms_sequence = []
-for frame in range(10):
-    atoms.rattle(stdev=0.02)  # rattle modifies the atoms in-place
-    atoms_sequence.append(atoms.copy())
-    
-ase.io.write('cu_rattle.xyz', atoms_sequence, format='extxyz')
-~~~
-{: .python}
-
-> ## Discussion
-> In this example, why do we need 
-> to make a new copy of Atoms in 
-> each step of the loop?
-{: .discussion}
-
-If we read such a file, by default `ase.io.read()` will only return the last frame:
-
-~~~
-atoms_frame = ase.io.read('cu_rattle.xyz')
-show(atoms_frame)
-~~~
-{: .python}
-
-Looking at the [documentation of this function](https://wiki.fysik.dtu.dk/ase/ase/io/io.html#ase.io.read), we see the `index` parameter selects which frames are read. To get all the frames we can set `index=':'`, or we can even slice to get e.g. every alternate frame.
-
-~~~
-atoms_alternating = ase.io.read('cu_rattle.xyz', index='::2')
-~~~
-{: .python}
-
-The built-in ASE GUI has some basic features to animate a list of atoms. Try playing with the "movie" controls:
-
-~~~
-view(atoms_alternating)
-~~~
-{: .python
-
-Some image formats are also supported by `ase.io.write`. To create an animated GIF:
-
-~~~
-ase.io.write('rattle.gif', atoms_sequence)
-~~~
-{: .python}
 
 > ## Exercise: Water animation
 > Create an animation of a 
