@@ -3,9 +3,9 @@ title: "Built-in calculators"
 teaching: 20
 exercises: 25
 questions:
-    - "How can I calculate energy, stress and forces using an built-in calculator?"
-    - "How can I find the optimal bonding length for a simple metallic system?"
-    - "How can I store and share property data?"
+    - "How can I calculate standard properties using a built-in calculator?"
+    - "How can I fit simple models to my calculations?"
+    - "What is the best way to store and share property data?"
 objectives:
     - "Calculate properties using a built-in `Calculator` object"
     - "Identify the optimum bonding length for a simple metallic system"

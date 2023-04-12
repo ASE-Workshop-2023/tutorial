@@ -24,6 +24,8 @@ instructor: ["Pietro Delugas", "Adam Jackson", "Lucy Whalley"]
 > please contact the workshop organisers and alternative
 > arrangements will be made.
 >
+> If you want to run this tutorial on your own computer
+> then please see the [Setup instructions].
 > 
 > This tutorial assumes that you have no prior knowledge of ASE; it is
 > aimed at complete beginners. We do assume you have basic familiarity with
@@ -37,9 +39,7 @@ instructor: ["Pietro Delugas", "Adam Jackson", "Lucy Whalley"]
 > Throughout the tutorial you will see references to [Jupyter Notebook](https://jupyter.org/).
 > However the large majority of content can be followed using either Jupyter Notebook, 
 > an [IPython interpreter](https://ipython.org/) or a plain-vanilla 
-> [Python interpreter](https://www.python.org/). The choice is yours, however 
-> if you are new to Python programming we recommend [Anaconda](https://www.anaconda.com/), which 
-> installs all three options in addition to a range of Python libraries for scientific computing.
+> [Python interpreter](https://www.python.org/). 
 {: .callout}
 
 {% include schedule.html %}

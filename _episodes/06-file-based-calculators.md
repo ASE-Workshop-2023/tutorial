@@ -3,8 +3,8 @@ title: "File based calculators"
 teaching: 15
 exercises: 15
 questions:
-       - "How can I calculate energy, stress and forces using a file based calculator?"
-       - "How does a file-based calculator work behind the scenes?"
+       - "How can I calculate standard properties using a file-based calculator?"
+       - "What happens behind the scenes in a file-based calculator?"
        - "When does ASE cache results from a calculation?"
 objectives:
        - "Calculate properties using a file-based `Calculator` object"
@@ -41,6 +41,8 @@ atoms = ase.build.molecule('C2H6CHOH')
 show(atoms)
 ~~~
 {: .python}
+
+<img src="../fig/molecule.png" alt="molecule" width="150">
 
 - Second, we attach a calculator: in this case, MOPAC.
 

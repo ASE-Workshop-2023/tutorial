@@ -4,7 +4,7 @@ teaching: 10
 exercises: 0
 questions:
 - "How can ASE help me in my research?"
-- "How is the ASE code structured?"
+- "In what way is the ASE code structured?"
 objectives:
 - "List the key features of ASE"
 - "Identify and describe the core ASE classes"

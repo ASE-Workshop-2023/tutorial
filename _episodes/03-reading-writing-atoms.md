@@ -3,8 +3,7 @@ title: "Reading and Writing Atoms"
 teaching: 25
 exercises: 15
 questions:
-- "How do I read structure(s) from a file?"
-- "How do I write structure(s) to a file?"
+- "How do I read/write structure(s) from/to a file?"
 - "Which file formats does ASE support?"
 - "How do I visualise a sequence of structures?"
 

@@ -4,9 +4,8 @@ teaching: 15
 exercises: 5
 questions:
 - "How can I describe a molecule or crystal using the `Atoms` class?"
-- "How can I access simple `Atoms` information?"
-- "How can I adjust default `Atoms` properties?"
-- "How do I access built-in help from ASE?"
+- "How can I access and adjust `Atoms` information?"
+- "What built-in help is available from ASE?"
 objectives:
 - "Create and visualise an `Atoms` object"
 - "Return simple structural information from an `Atoms` object"

@@ -3,9 +3,8 @@ title: "Building and Manipulating Atoms"
 teaching: 25
 exercises: 25
 questions:
-    - "How can I build molecules and bulk structures without specifying all atomic positions?"
-    - "How can I create supercells?"
-    - "How can I create point defects?"
+    - "How can I build molecules and bulk structures more efficiently?"
+    - "How can I create supercells and point defects?"
 objectives:
     - "Build a molecule using the built-in database"
     - "Build a crystal using built-in crystal structure types"

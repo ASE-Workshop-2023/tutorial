@@ -3,6 +3,7 @@ title: "Calculations in parallel"
 teaching: 20
 exercises: 20
 questions:
+    - "How can I run calculations in parallel?"
 objectives:
 keypoints:
 ---
