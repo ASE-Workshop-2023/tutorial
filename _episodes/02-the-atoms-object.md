@@ -22,6 +22,10 @@ keypoints:
 
 ---
 
+> ## Code connection
+> In this chapter we explore the [`Atoms` class](https://wiki.fysik.dtu.dk/ase/ase/atoms.html#list-of-all-methods), which contains methods for getting and setting simple properties for a molecule or material.
+{: .callout}
+
 ### Molecules and materials are represented by the `Atoms` class
 
 - We can define a molecule with lists of symbols and positions:

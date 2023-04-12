@@ -7,6 +7,7 @@ questions:
 - "How do I write structure(s) to a file?"
 - "Which file formats does ASE support?"
 - "How do I visualise a sequence of structures?"
+
 objectives:
 - "Read in a structure from a file"
 - "Write a structure to a file"
@@ -18,12 +19,14 @@ keypoints:
 - "ASE can read a variety of file formats"
 - "ASE can write a variety of file formats"
 - "There are lots of read and write related functions in modules under `ase.io`"
-- "Some I/O formats support a sequence of atoms"
-- "Array slicing can be used to read a sequence of frames"
-- "To visualise a sequence of structures we can use the ASE GUI or write an animation"
+- "Some I/O formats support a sequence of `Atoms`"
+- "List slicing can be used to select a sequence of frames"
+- "To visualise a sequence of frames use the ASE GUI or write an animation"
 ---
 
-In this chapter we explore the [`ase.io` module](https://wiki.fysik.dtu.dk/ase/ase/io/io.html), which contains functions for reading and writing `Atoms` objects.
+> ## Code connection
+> In this chapter we explore the [`ase.io` module](https://wiki.fysik.dtu.dk/ase/ase/io/io.html), which contains functions for reading and writing `Atoms` objects.
+{: .callout}
 
 ### ASE can read a variety of file formats
 
@@ -50,6 +53,8 @@ show(imported_crystal)
 ~~~
 {: .python}
 
+<img src="../fig/ZnS.png" alt="image of ZnS structure" width="250">
+
 - Use the vim terminal text editor (or otherwise) to inspect the .cif file
 - Crystallographic Information Framework (CIF) is quite a complicated format because it is designed to hold a lot of data relevant to crystallography. 
 
@@ -60,7 +65,7 @@ vim "./files/ZnS.cif"
 
 ### ASE can write a variety of file formats
 
-- We can use ASE to write the ZnS structure in a `FHI-aims` readable format.
+- We can use ASE to write the ZnS structure in, for example, a `FHI-aims` readable format.
 - We don't need to specify the FHI-aims format; the filetype is inferred from the filename.
 - The `scaled=True` option is used to write in fractional coordinates; by default this writer uses Cartesian coordinates.
 
@@ -77,11 +82,10 @@ cat geometry.in
 {: .sh}
 
 ~~~
-#===============================================================================
+#=======================================================
+# FHI-aims file: geometry.in
 # Created using the Atomic Simulation Environment (ASE)
-
-# Mon Apr  3 11:11:50 2023
-
+# Wed Apr 12 11:18:21 2023
 #=======================================================
 lattice_vector 5.3873657499999998 0.0000000000000000 0.0000000000000000 
 lattice_vector 0.0000000000000000 5.3873657499999998 0.0000000000000000 
@@ -105,13 +109,12 @@ atom_frac 0.7500000000000000 0.2500000000000000 0.7500000000000000 S
 > ase info --formats
 > ~~~
 > {: .bash}
-> {: .callout}
+{: .callout}
 
 ### There are lots of read and write related functions in modules under `ase.io`
 
 - `ase.io.read()` and `ase.io.write()` will automatically dispatch to a variety of functions in modules under `ase.io`. 
-- For example, if we look at `ase.io.write` we can get the signature.
-- `**kwargs` means "all remaining keyword arguments"; this allows extra options like `scaled=True` to be passed to writers that understand them.
+- For example, if we inspect the docstring for `ase.io.write` we can get the signature.
 
 ~~~
 ase.io.write?
@@ -129,8 +132,9 @@ ase.io.write(
 ~~~
 {: .output}
 
+- `**kwargs` means "all remaining keyword arguments"; this allows extra options like `scaled=True` to be passed to writers that understand them.
 - To find the extra supported `**kwargs`, we can look at the documentation of the lower-level functions. 
-- For example we can find the `scaled=True` option for FHI-aims at https://wiki.fysik.dtu.dk/ase/ase/io/formatoptions.html#ase.io.aims.write_aims
+- For example we can find the `scaled=True` option for FHI-aims [here](https://wiki.fysik.dtu.dk/ase/ase/io/formatoptions.html#ase.io.aims.write_aims).
 
 > ## Exercise: Converting structures
 > Import a structure file relevant to your own research, 
@@ -143,15 +147,18 @@ ase.io.write(
 ### Some I/O formats support a sequence of atoms 
 
 - This is particularly common for molecular dynamics or geometry optimisation calculation outputs, but they can also be useful to store training data for model-fitting or machine-learning.
-- For example, to create a set of similar structures with small displacements we can use a Python `For` loop.
+- For example, to create a set of similar structures with small random displacements we can use a Python `For` loop and the [`Atoms.rattle` method](https://wiki.fysik.dtu.dk/ase/ase/atoms.html#ase.Atoms.rattle).
+- The loop variable `frame` is also used as a seed for the random number generator in `rattle`; if a seed is not provided it defaults to the same default value and the motion over multiple frames is not random.
 - The sequence is written using in [`.extxyz` format](https://wiki.fysik.dtu.dk/ase/ase/io/formatoptions.html#extxyz), which is an extension to the very simple xyz format for storing molecular coordinates.
 
 ~~~
 atoms = imported_crystal
 
 atoms_sequence = []
-for frame in range(10):
-    atoms.rattle(stdev=0.02)  # rattle modifies the atoms in-place
+num_frames = 10
+
+for frame in range(num_frames):
+    atoms.rattle(stdev=0.02, seed=frame)  # rattle modifies the atoms in-place
     atoms_sequence.append(atoms.copy())
     
 ase.io.write('ZnS_rattle.xyz', atoms_sequence, format='extxyz')
@@ -163,40 +170,59 @@ ase.io.write('ZnS_rattle.xyz', atoms_sequence, format='extxyz')
 > each step of the loop?
 {: .discussion}
 
-## Array slicing can be used to read a sequence of frames
+### List slicing can be used to select a sequence of frames
 
-- By default `ase.io.read()` will only return the last frame of `.extxyz` files.
+- By default `ase.io.read()` will only return the last frame of `.extxyz` files as a single `Atoms` object.
 
 ~~~
 atoms_frame = ase.io.read('ZnS_rattle.xyz')
-show(atoms_frame)
+type(atoms_frame)
 ~~~
 {: .python}
 
-- The `index` parameter can be used to select which frames are read. 
+~~~
+ase.atoms.Atoms
+~~~
+{: .output}
+
+- The `index` parameter can be used to select which sequence frames are returned as a list. 
+- The `index` keyword supports [Python indexing and slicing operations](https://docs.python.org/3/library/stdtypes.html?highlight=list#common-sequence-operations).
+- To get all the frames we can set `index=':'`.
+
+~~~
+atoms_all_frames = ase.io.read('ZnS_rattle.xyz', index=':')
+print(type(atoms_all_frames))
+print(len(atoms_all_frames))
+~~~
+{: .python}
+
+~~~
+list
+10
+~~~
+{: .output}
+
+- Alternatively, we can slice to get, for example, every other frame.
+
+~~~
+atoms_alternating = ase.io.read('ZnS_rattle.xyz', index='::2')
+print(type(atoms_all_frames))
+print(len(atoms_all_frames))
+~~~
+{: .python}
+
+~~~
+list
+5
+~~~
+{: .output}
+
 
 > ## From the horse's mouth
 > You can read about the `index` parameter and more by inspecting the [documentation of this function](https://wiki.fysik.dtu.dk/ase/ase/io/io.html#ase.io.read).
 {: .callout}
 
-- The `Atoms` sequence is stored as a NumPy array, and so the `index` keyword supports [NumPy indexing and slicing operations](https://numpy.org/doc/stable/user/basics.indexing.html).
-- To get all the frames we can set `index=':'`.
-
-~~~
-atoms_alternating = ase.io.read('ZnS_rattle.xyz', index=':')
-~~~
-{: .python}
-
-- Alternatively, we can slice to get e.g. every other frame.
-
-~~~
-atoms_alternating = ase.io.read('ZnS_rattle.xyz', index='::2')
-~~~
-{: .python}
-
-TODO: check if array or list???
-
-### To visualise a sequence of structures we can use the ASE GUI or write an animation
+### To visualise a sequence of frames use the ASE GUI or write an animation
 
 - The built-in ASE GUI has some basic features to animate a list of `Atoms`.
 - Try playing with the "movie" controls after running the code below.
