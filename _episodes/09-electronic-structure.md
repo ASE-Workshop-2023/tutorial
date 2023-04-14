@@ -14,7 +14,7 @@ keypoints:
 ### We can use the `tocell()` method to build a FCC lattice
 
 - The first step, as always, is to import libraries and build an `Atoms` object
-- Here we create an `FCC` class and then convert this to a `Cell` object
+- Here we create an `FCC` class instance and then convert this to a `Cell` object
 
 ~~~
 from ase import Atoms
@@ -158,11 +158,12 @@ bands_calc = Espresso(directory=bands_directory,
 ~~~
 {: .python}
 
-8. We run the bands calcuation with the new calculator. 
+8. We run the bands calculation with the new calculator. 
 
 ~~~
-bands_calc.calculate(si_fcc, properties=['eigenvalues'], system_changes=[])
-bands_structure = bands_calc.band_structure()
+si_fcc_bands = si_fcc.copy()
+si_fcc_bands.calc = bands_calc
+results_bands = si_fcc_bands.get_properties(['eigenvalues']) 
 ~~~
 {: .python}
 
@@ -173,7 +174,7 @@ bands_structure = bands_calc.band_structure()
 
 ~~~
 from ase.spectrum.band_structure import BandStructure
-si_fcc_band_structure = BandStructure(path=kpointpath, energies=bands_calc.results['eigenvalues'], reference=si_fcc.calc.get_fermi_level())
+si_fcc_band_structure = BandStructure(path=kpointpath, energies=results_bands['eigenvalues'], reference=si_fcc.calc.get_fermi_level())
 bandplot = band_structure.plot(emin=-6, emax=15)
 bandplot.figure.savefig('band_structure_Si.png')
 ~~~
@@ -197,8 +198,9 @@ nscf_calc = QEpw(directory =nscf_directory,
                  pseudopotentials=atomic_species, 
                  kpts=[16,16,16],
                  koffset=[0,0,0]) 
-                            
-nscf_calc.calculate(si_fcc, properties=['eigenvalues'], system_changes=[])
+si_fcc_nscf = si_fcc.copy()
+si_fcc_nscf.calc = nscf_calc
+nscf_results = nscf_calc.get_properties(['eigenvalues'])
 ~~~ 
 {: .python}
 
