@@ -22,7 +22,7 @@ keypoints:
 > In this chapter we explore the [`ase.calculators.mopac` module](https://databases.fysik.dtu.dk/ase/ase/calculators/mopac.html), which is a file-based calculator for calculating standard properties (energy, forces and stress) from a set of atomic positions.
 {: .callout}
 
-## Typical academic codes are controlled by _input files_ and write their results to _output files_
+### Typical academic codes are controlled by _input files_ and write their results to _output files_
 
 - This workflow is convenient for batch calculations on clusters (and for Fortran programmers...)
 - To interoperate with this type of code, the ASE Calculator needs to: i) prepare appropriate input; ii) call the executable; iii) read the output

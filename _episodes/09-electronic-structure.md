@@ -1,5 +1,5 @@
 ---
-title: "Properties: electronic structure"
+title: "Electronic structure"
 teaching: 20
 exercises: 20
 questions:

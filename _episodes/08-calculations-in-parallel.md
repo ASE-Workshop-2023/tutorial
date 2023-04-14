@@ -32,7 +32,7 @@ keypoints:
 - GPAW development is closely related to ASE development.
 - The difference between GPAW and other external Python calculators is that it includes a special Python interpreter for parallel calculations.
 
-### The workflow for single core GPAW calculations is the same as that for built-in calculators
+### For serial GPAW calculations we use the standard procedure 
 
 - To begin with, we run a single-point energy calculation using Kohn-Sham density-functional theory (DFT).
 - First, we import GPAW and create the atoms object
@@ -322,20 +322,6 @@ axes[2].set_xlabel('number of k-points')
 
 - We find that the parallel calculation is faster, but not 4 times faster.
 - This is because it is not possible to parallelise all parts of the code.
-
-### Quantum Espresso is a suite of programs for electronic structure calculations 
-
-- Here we use the `pw.x` program for DFT calculations with a plane-wave basis set and pseudopotentials.
-- First we need to find our pseudopotentials library and pass this information to the Calculator. 
-- In the virtual environment for these tutorials it can be found here:
-
-~~~
-from pathlib import Path
-# Customise if necessary to espresso pseudopotential path
-pseudo_dir = str(
-    Path.home() / 'opt/espresso_sssp/SSSP_1.1.2_PBE_efficiency')
-~~~
-{: .python}
 
 ### Quantum Espresso can also be used for parallel programming with MPI
 
