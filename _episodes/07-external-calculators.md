@@ -3,12 +3,17 @@ title: "External calculators"
 teaching: 15
 exercises: 20
 questions:
+    - "How can I calculate standard properties using an external calculator?"
+    - "How can I calculate standard properties using a machine learnt potential?"
+    - "Why are socket calculators more computationally efficient?"
 objectives:
+    - "Calculate properties using an external calculator and machine learnt potential"
+    - "Calculate properties using a socket interface"
 keypoints:
     - "The `quippy` package provides a Python interface to a range of interatomic and tight-binding potentials"
     - "The workflow for external, file-based and built-in calculators is the same"
     - "Quantum Espresso is a suite of programs for electronic structure calculations "
-    - "Socket calculators allow more efficient communication and data re-use"
+    - "Socket interfaces allow more efficient communication and data re-use"
 ---
 
 > ## Code connection
@@ -81,7 +86,7 @@ pseudo_dir = str(
 ~~~
 {: .python}
 
-### Socket calculators allow more efficient communication and data re-use
+### Socket interfaces allow more efficient communication and data re-use
 
 - Computing the energy/forces for a series of related structures (e.g. during geometry optimisation), DFT codes typically re-use previously calculated wavefunctions to obtain a good starting estimate. 
 - Using a file-based ASE calculator, each calculation is essentially independent; not only do we miss out on wavefunction re-use, but we incur overhead as the code is "rebooted" (and memory re-allocated, pseudopotentials loaded, etc.).

@@ -3,19 +3,19 @@ title: "What Next?"
 teaching: 5
 exercises: 0
 questions:
-	- "Where can I find out more about ASE?"
-	- "How can I ask for help or report problems?"
-	- "Can I contribute to ASE?"
-	- "How can I acknowledge ASE in my work?"
+    - "Where can I find out more about ASE?"
+    - "How can I ask for help or report problems?"
+    - "Can I contribute to ASE?"
+    - "How can I acknowledge ASE in my work?"
 objectives:
-	- "Identify other online ASE resources"
-	- "Understand when and how to ask for help"
-	- "Understand how to cite ASE"
+    - "Identify other online ASE resources"
+    - "Understand when and how to ask for help"
+    - "Understand how to cite ASE"
 keypoints:
-	- "There are many features of ASE that we have not yet explored"
-	- "There are ways to ask for help"
-	- "ASE welcomes contributions"
-	- "If you find ASE useful in your research, please cite accordingly"
+    - "There are many features of ASE that we have not yet explored"
+    - "There are ways to ask for help"
+    - "ASE welcomes contributions"
+    - "If you find ASE useful in your research, please cite accordingly"
 ---
 
 ### There are many features of ASE we have not yet explored
@@ -23,6 +23,7 @@ keypoints:
 - There are some nice resources which compliment what we have covered in this tutorial:
 	- ASE website tutorials
 	- [CAMD summer school tutorials](https://wiki.fysik.dtu.dk/gpaw/summerschools/summerschool22/summerschool22.html)
+	- Adam's crystal symmetry tutorial
 	- Paper associated with ASE: https://iopscience.iop.org/article/10.1088/1361-648X/aa680e
 
 ### There are ways to ask for help
