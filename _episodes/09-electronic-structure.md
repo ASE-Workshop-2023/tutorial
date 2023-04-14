@@ -7,14 +7,14 @@ objectives:
 keypoints:
 ---
 
-## Properties: Total energy and bandstructure calculation
+> ## Code connection
+> In this chapter we will use [Quantum Espresso](https://www.quantum-espresso.org/) to calculate the electronic structure (bandstructure and density of states) of silicon.
+{: .callout}
 
-Seen some basic properties, now calculating more advanced workflow for commonly used end: bandstructure and DOS.
-Tutorial with  first examples of how setting up an espresso  calculator and perform a Total Energy and bast structure calculations. 
+### We can use the `tocell()` method to build a FCC lattice
 
-## Total energy and bandstructure calculation
-
-## Set up the system
+- The first step, as always, is to import libraries and build an `Atoms` object
+- Here we create an `FCC` class and then convert this to a `Cell` object
 
 ~~~
 from ase import Atoms
@@ -218,6 +218,3 @@ plt.savefig('DOS_Si.png')
 {: .python}
 
 ![](../fig/DOS_Si.png)
-
-## TODO
-- exercise to calculate the silicon vacancy bandstructure?
