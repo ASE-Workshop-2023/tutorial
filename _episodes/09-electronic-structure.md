@@ -3,18 +3,42 @@ title: "Electronic structure"
 teaching: 20
 exercises: 20
 questions:
+   - "How can I use DFT to produce an electronic bandstructure?"
+   - "How can I use DFT to produce an electronic Density of States?"
 objectives:
 keypoints:
+   - "We now have all the tools in place to calculate electronic structure properties"
+   - "Use the `tocell()` method to build a FCC lattice"
+   - "Pseudopotential data are loaded from a local filepath"
+   - "Python dictionaries are used to store related calculation parameters"
+   - "`EspressoProfile` objects are used to hold run information"
+   - "Specify a directory for each calculation to avoid overwriting"
+   - "Generate k-points path using the `bandpath` method"
+   - "Create a new `Calculator` object and `Atoms` for the next calculation"
+   - "Use `ase.spectrum` to analyse and plot band structures"
+   - "Use `ase.dft` to compute the Density of States"
 ---
 
 > ## Code connection
-> In this chapter we will use [Quantum Espresso](https://www.quantum-espresso.org/) to calculate the electronic structure (bandstructure and density of states) of silicon.
+> In this chapter we will use [Quantum Espresso](https://www.quantum-espresso.org/) to calculate the electronic structure (bandstructure and density of states) of silicon. We will analyse and plot the electronic structure using `ase.dft` and `ase.spectrum`.
 {: .callout}
 
-### We can use the `tocell()` method to build a FCC lattice
+### We now have all the tools in place to calculate electronic structure properties
+
+- In the previous tutorials we created `Atoms` objects and used the Quantum Espresso calculator to get basic properties (total energies and forces) calculated using DFT.
+- We will now use this calculator to calculate and plot the band dispersion and density of states for silicon.
+- This process takes four calculation steps; i) structure optimisation; ii) self-consistent calculation; iii) non-self-consistent calculation with sampling along a k-point path in reciprocal space; iv) non-self-consistent calculation with dense sampling in reciprocal space.
+
+
+> ## Note
+> This is not a course in DFT; for more details on the terminology used please see other sources, for example...
+{: .callout}
+
+### The `tocell()` method can be used to build a FCC lattice
 
 - The first step, as always, is to import libraries and build an `Atoms` object
 - Here we create an `FCC` class instance and then convert this to a `Cell` object
+- We will assume that the cell parameters have already been optimized.
 
 ~~~
 from ase import Atoms
@@ -29,25 +53,41 @@ si_fcc = Atoms(symbols='Si2',
 ~~~
 {: .python}
 
-## setup basic PW calculator for scf calculation
+### Pseudopotential data are loaded from a local filepath
 
-1. The main input variables: 
-   * we specify in control that we want to do a self-consistent calculation, a prefix to identify the calculation, the directory where the program saves the data files, pseudopotentials' location;
-   * in system we specify the two cutoff for the FFT grid, their values are read from the dataset provided with the SSSP pseudopotential library;
-   * in electrons we select the iterative diagonalization algorithm and the convergence threshold. 
+- Each pseudopotential-based electronic structure code is associated with a dataset describing the potentials used.
+- In this case we specify the filepath to the SSSP pseudopotential library, and read this to get the kinetic energy cutoff energy values for silicon.
+- We also store the pseudopotential for each species in the system of interest within a Python dictionary
+
+> ## Note
+> This is not a course in DFT; be aware that calculation parameters must be chosen with care for a given research problem.
+{: .callout}
 
 ~~~
 from pathlib import Path
 import json
+
 pseudo_dir = str(Path.home() / 'SSSP-1.2.1_PBE_efficiency')
-outdir = Path('./si_fcc/out).absolute() 
 with open(str(pseudo_dir / 'SSSP_1.2.1_PBE_efficiency.json')) as fj:
   dj = json.load(fj) 
 ecutwfc = dj['Si']['cutoff_wfc']
-ecutrho = dj['Si']['cutoff_rho'] 
+ecutrho = dj['Si']['cutoff_rho']
+
+atomic_species = {'Si':dj['Si']['filename']}
+~~~
+
+### Python dictionaries are used to store related calculation parameters
+
+- There are many parameters used in a typical electronic structure calculation.
+- Keywords for the `Espresso` class are specified as dictionaries grouping related parameters. 
+   - `control` specifies that we want to do a self-consistent calculation, a prefix to identify the calculation, the directory where the program saves the data files, and the pseudopotentials' location;
+   - `system` specifies the two cutoff for the FFT grid
+   - `electron` specifies the iterative diagonalization algorithm and the convergence threshold. 
+
+~~~
 control = {'calculation': "scf",
            'prefix': "si_fcc",
-           'outdir': f"{outdir}",
+           'outdir': str(Path('./si_fcc/out).absolute()) ,
            'pseudo_dir': pseudo_dir,
            'tprnfor': True,
            'tstress': True}
@@ -58,26 +98,17 @@ electrons = {'diagonalization':'davidson',
 ~~~
 {: .python}
 
-2. The pseudopotentials for each atomic species, taken from the SSSP library
-3. The MP mesh for kpoints 
-4. The offset of the MP mesh 
-5. The command for starting the calculations 
 
-~~~
-atomic_species = {'Si':dj['Si']['filename']}
-kpts = [8,8,8] #8X8X8 MP k-point mesh 
-koffset = [1,1,1] 
+### `EspressoProfile` objects are used to hold run information
 
-~~~
-{: .python}
-
-6. Setup how pw.x is run and save the info in EspressoProfile instances:
-   we setup two profiles:
-   *  one where we run with 4 MPI ranks with the default parallelization
-   *  one where we run with 4 MPI ranks using pools parallelization, distributing k-points in 4 pools 
+- Information for how to run QE on a particular system is stored in an `EspressoProfile` object.
+- Here we specify two profiles
+   - one where we run with 4 MPI ranks with the default parallelization
+   - one where we run with 4 MPI ranks using pools parallelization
 
 ~~~
 from ase.calculator.espresso import EspressoProfile
+
 qepath = str(Path.home() / 'qe-7.2')
 plain_argv = ['mpirun', '-np', '4', f"{qepath}/bin/pw.x"]
 pools_argv = ['-nk', '4']
@@ -86,10 +117,16 @@ profile_4pools = EspressoProfile(plain_argv + pools_argv)
 ~~~
 {: .python}
 
-7. We create the Espresso calculator for the scf calculation. We initialize it with a dedicated directory where the calculator will save the input and the standard-output file of pw.x. As we are going to run few calculations one after the other we will use a specific directory for each of them so that we don't overwrite the input and output files. The binary files that have to be read by the successive calculations will instead be saved in the same directory specified by the outdir input variable defined above. 
+### Specify a directory for each calculation to avoid overwriting
+
+- We are now ready to create an `Espresso` calculator for the scf calculation.
+- As we are going to run few calculations we will specify a specific directory for each of them so that we don't overwrite the input and standard-output files of the `pw.x` programme.
+- Binary files that are read by successive calculations will be saved in the `outdir` input variable defined above. 
+- We also specify some other key information; the Monkhort-Pack mesh for kpoints, and the offset of the MP mesh. 
 
 ~~~
 from ase.calculators.espresso import Espresso 
+
 scf_directory = Path('./si_fcc/scf/).absolute()
 
 scf_calc = Espresso(directory=scf_directory,
@@ -97,13 +134,14 @@ scf_calc = Espresso(directory=scf_directory,
                 input_data={'control': control,
                             'system': system,
                             'electrons': electrons},
-                pseudopotentials=atomic_species,
+                pseudopotentials={'Si':dj['Si']['filename']},
                 kpts=[8,8,8],
                 koffset=[1,1,1])
 ~~~
 {: .python}
 
-8. We now use the calculator to run an scf calculation for our system.
+- We now use the calculator to run a scf calculation for our system.
+
 ~~~
 si_fcc.calc = scf_calc
 props_scf = si_fcc.get_properties(['energy'])
@@ -116,10 +154,7 @@ round(props_scf['energy'],8)
 ~~~
 {: .output}
 
-## Bandstructure
-
-Setup the calculator for computing the bands. 
-1. First we generate the k-point path using ASE bandpath method:
+### Generate k-points path using the `bandpath` method
 
 ~~~
 kpointpath = si_fcc.cell.bandpath(path='LGXWKG', density=20)
@@ -137,17 +172,23 @@ kpointpath.special_points
 ~~~
 {: .output}
 
-7. Then we setup the new calculator for bands:
-   * we set 'bands' as 'calculation in this calculator
-   * we add some conduction bands nbnd 4 --> 12  
-   * we use the pools parallized profile 
-   * we raise e bit the convergence threshold 1.e-8 --> 1.e-6
+### Create a new `Calculator` object and `Atoms` for the next calculation
+
+- First we use the dictionary `update` method to adjust some calculation parameters.
 
 ~~~
 control.update({'calculation':"bands"})
 system.update({'nbnd':12})
 electrons.update({'conv_thr': 1.e-6})
+~~~
+{: .python}
+
+- Then we setup the new calculator for bands.
+- We specify a new calculation directory and a new profile
+
+~~~
 bands_directory = Path('./si_fcc/bands').absolute()
+
 bands_calc = Espresso(directory=bands_directory,
                   input_data={'control': control,
                               'system': system,
@@ -158,7 +199,7 @@ bands_calc = Espresso(directory=bands_directory,
 ~~~
 {: .python}
 
-8. We run the bands calculation with the new calculator. 
+- We copy the `Atoms` object to avoid overwriting results from the SCF calculation, attach the `Calculator` and run.
 
 ~~~
 si_fcc_bands = si_fcc.copy()
@@ -167,30 +208,43 @@ results_bands = si_fcc_bands.get_properties(['eigenvalues'])
 ~~~
 {: .python}
 
-9. We now use ASE's BandsStructure class to plot the bands:
-   * we extract the band's  energies from the results dictionary of the bands_calc calculator;
-   * we use as reference level the Fermi level that has been computed in the scf calculation;
-   * as path argument we use again the kpointspath generated above. 
+### Use `ase.spectrum` to analyse and plot band structures
+
+
+- Create a `BandStructure` object holding the k-point path and eigenvalues.
+- Use as reference level the Fermi level that has been computed in the scf calculation.
 
 ~~~
 from ase.spectrum.band_structure import BandStructure
-si_fcc_band_structure = BandStructure(path=kpointpath, energies=results_bands['eigenvalues'], reference=si_fcc.calc.get_fermi_level())
-bandplot = band_structure.plot(emin=-6, emax=15)
+si_fcc_band_structure = BandStructure(path=kpointpath, 
+                           energies=results_bands['eigenvalues'], reference=si_fcc.calc.get_fermi_level())
+~~~
+{: .python}
+
+
+- The `Bandstructure` object has methods for plotting and saving.
+
+~~~
+bandplot = si_fcc_band_structure.plot(emin=-6, emax=15)
 bandplot.figure.savefig('band_structure_Si.png')
 ~~~
 {: .python}
-![](../fig/band_structure_Si.png)
 
-10. Now we setup the calculator for computing the DOS, in this case we will perform first an nscf calculation with a symmetrized, denser  MP grid. 
-   * we need to change verbosity to 'high' because we are using more than 100 kpoint and the printout of energies in the standard output wound otherwise be suppressed. 
-   * we further increase the number of bands to avoid artifacts at higher energies in our plot. 
+<img src="../fig/band_structure_Si.png" alt="Bandstructure plot for Si" width="500">
+
+### Use `ase.dft` to compute the Density of States
+
+- As for the bandstructure calculation, we create a new `Calculator`, `Atoms` and calculation directory for this calculation.
+- We change verbosity to 'high' because printout of energies in the standard output wound be suppressed for the large number of kpoints we are using. 
 
 ~~~
 control.update({'calculation':'nscf',
                 'verbosity': 'high'})
 system.update({'nbnd': 20})
+
 nscf_directory = Path('./si_fcc/nscf').absolute() 
-nscf_calc = QEpw(directory =nscf_directory,
+
+nscf_calc = Espresso(directory =nscf_directory,
                  profile = profile_4pools,
                  input_data={'control': control,
                              'system': system,
@@ -198,25 +252,34 @@ nscf_calc = QEpw(directory =nscf_directory,
                  pseudopotentials=atomic_species, 
                  kpts=[16,16,16],
                  koffset=[0,0,0]) 
+
 si_fcc_nscf = si_fcc.copy()
 si_fcc_nscf.calc = nscf_calc
 nscf_results = nscf_calc.get_properties(['eigenvalues'])
 ~~~ 
 {: .python}
 
-11. We use ASE's DOS class to compute the Density of States, the initiatialization of the DOS class extracts all information needed directly from the nscf calculator that we pass as argument to the DOS init method: 
+- We use ASE's `DOS` class to compute the Density of States.
 
 ~~~
 from ase.dft.dos import DOS 
 from matplotlib  import pyplot as plt
 
 dos = DOS(nscf_calc, npts = 200,width=0.2) 
+~~~
+
+- This is initialised using the `Calculation` object `nscf_calc`.
+- We can then access the `energies` property and `get_dos` "getter" method needed for plotting the DOS.
+
+~~~
 energies=dos.energies
 dosvals = dos.get_dos() 
+
 plt.plot(energies, dosvals)
 plt.axis([-13, 15, 0, 5])
 plt.savefig('DOS_Si.png')
 ~~~
 {: .python}
 
-![](../fig/DOS_Si.png)
+<img src="../fig/DOS_Si.png" alt="Electronic density of states for Si" width="500">
+

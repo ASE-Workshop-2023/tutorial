@@ -1,7 +1,7 @@
 ---
 title: "Local optimisation"
 teaching: 20
-exercises: 20
+exercises: 30
 questions:
     - "How can I find kinetically stable structures?"
     - "Is it possible to apply constraints to my system?"
