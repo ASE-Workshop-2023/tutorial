@@ -28,8 +28,15 @@ keypoints:
 
 > ## Getting the model and training data
 > The documentation for Gaussian Approximation Potentials (GAP) links to a [few published GAP models](https://libatoms.github.io/GAP/data.html).
-> Follow the "Si" link and download *Si_PRX_GAP.zip*, which contains the model and training data. 
-> Move the .zip file somewhere you can find and extract the files.
+> To download and extract the data in a Jupyter notebook you can use bash.
+> ~~~
+> %%bash
+>
+> wget -q https://www.repository.cam.ac.uk/bitstream/handle/1810/317974/Si_PRX_GAP.zip
+> unzip Si_PRX_GAP.zip
+> ~~~
+> {: .bash}
+> 
 {: .callout}
 
 > ## Note
