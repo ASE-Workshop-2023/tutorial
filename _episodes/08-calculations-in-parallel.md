@@ -32,6 +32,10 @@ keypoints:
 - GPAW development is closely related to ASE development.
 - The difference between GPAW and other external Python calculators is that it includes a special Python interpreter for parallel calculations.
 
+> ## Getting the data
+> To download the necessary pseudopotential data, run `gpaw install-data ./gpaw-pot/` in the terminal and type `y` when prompted`
+{: .callout} 
+
 ### For serial GPAW calculations we use the standard procedure 
 
 - To begin with, we run a single-point energy calculation using Kohn-Sham density-functional theory (DFT).
