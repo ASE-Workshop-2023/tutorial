@@ -91,7 +91,9 @@ beethoven = Composer(birth_year=1770)
 > The structure of this course is designed to reflect the structure of ASE. 
 > First we introduce the `Atoms` object (chapters 2-4) and `Calculators` object (chapters 5-6). 
 > We then outline how to simulate more complex and computationally demanding systems by parallelising over multiple compute cores (chapter 7). 
-> Finally we apply our understanding to two common-use tasks: geometric minimisation (chapter 8) and a bandstructure calculation (chapter 9).
+> Finally we apply our understanding to three common tasks: molecular dynamics, geometry optimisation and electronic structure calculations (chapter 9).
+> As the course progresses we move from smaller code snippets introducing the core ASE objects, to extended pieces of code for more complex tasks.
+> Throughout the course you will see boxes like this. They will provide Python hints, signposting to other resources, discussion prompts or exercises for you to complete.
 {: .callout}
 
 
