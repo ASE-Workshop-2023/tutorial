@@ -13,10 +13,6 @@ pip uninstall nglview
 
 conda install ipywidgets -c conda-forge --no-deps
 conda install -c conda-forge nglview  --no-deps  
-
-jupyter nbextension install widgetsnbextension --py --sys-prefix 
-jupyter nbextension enable --py --sys-prefix widgetsnbextension 
-jupyter-nbextension enable nglview --py --sys-prefix
 ```
 
 ## Test it
