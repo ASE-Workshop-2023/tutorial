@@ -10,10 +10,11 @@ instructor: ["Pietro Delugas", "Adam Jackson", "Lucy Whalley"]
 > <a href="{{ site.ase_workshop }}">Open Science with Atomic Simulation Environment</a>
 > workshop held in Daresbury Laboratory, UK. The website is based on a template developed by 
 > <a href="{{ site.carpentries_site }}">The Carpentries</a> and is licensed under 
-> <a href="{{ site.cc_by_human }}">CC-BY 4.0</a>.
+> <a href="{{ site.cc_by_human }}">CC-BY 4.0</a>. The pedagogical style of the course is also
+> inspired by <a href="{{ site.carpentries_site }}">The Carpentries</a>.
 {: .callout}
 
-> ## Setup and pre-requisites
+> ## Preparation and pre-requisites
 > To participate in the tutorials at the 
 > <a href="{{ site.ase_workshop }}">Open Science with Atomic Simulation Environment</a>
 > workshop you will need an up-to-date web browser 
