@@ -333,6 +333,16 @@ axes[2].set_xlabel('number of k-points')
 - We define the mpi command when instantiating the calculator: the command might need to be tweaked for different machines with different parallel environments. 
 - This information is captured in a "Profile" object.
 
+> ## Getting the data
+> We will use the SSSP-efficiency pseudopotential set. To download these from a Jupyter Notebook run the following in a cell:
+> ~~~
+> %%bash
+> wget -q https://archive.materialscloud.org/record/file?record_id=1680\&filename=SSSP_1.2.1_PBE_efficiency.tar.gz -O SSSP-efficiency.tar.gz
+> mkdir SSSP-efficiency
+> tar -zxvf SSSP-efficiency.tar.gz -C ./SSSP-efficiency
+> {: .bash}
+{: .callout}
+
 > ## Note  
 > Profiles are a fairly new ASE feature and not yet used by all such Calculators. An alternative way to manage these commands is by setting environment variables, e.g. ASE_ESPRESSO_COMMAND. Check the docs for each calculator to see what is currently implemented.
 {: .callout}
