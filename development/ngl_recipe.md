@@ -1,14 +1,18 @@
 ## Recipe
 
 ```
+## remove old version installs
 rm -rf /opt/conda/share/jupyter/labextensions/nglview-js-widgets
 rm -rf /opt/conda/share/jupyter/nbextensions/nglview-js-widgets
 
+## remove pip installs
 pip uninstall ipywidgets
 pip uninstall nglview 
 
-conda install ipywidgets==7.6.5 --no-deps
-conda install nglview -c conda-forge --no-deps  
+### ***open up new terminal (or it will not register that packages have been removed)
+
+conda install ipywidgets -c conda-forge --no-deps
+conda install -c conda-forge nglview  --no-deps  
 
 jupyter nbextension install widgetsnbextension --py --sys-prefix 
 jupyter nbextension enable --py --sys-prefix widgetsnbextension 
