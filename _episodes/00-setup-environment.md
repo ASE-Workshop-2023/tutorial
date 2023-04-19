@@ -22,8 +22,8 @@ Use the username given at registration and following instructions to setup your 
 
 #### Create account and login
 
-#. Go to training.jupyter.stfc.ac.uk into your browser
-#. Signup: click on **Signup** then use the username given and choose password and click **Create User**
+- Go to training.jupyter.stfc.ac.uk into your browser
+- Signup: click on **Signup** then use the username given and choose password and click **Create User**
 
 <img src="../fig/step_0.png" alt="landing page screen" width="1200">
 
@@ -35,7 +35,7 @@ Authorization happens behind the scenes if successful you will see something lik
 <img src="../fig/step_2.png" alt="Signup page" width="1200">
 
 
-#. Login with the credentials from above
+- Login with the credentials from above
 
 <img src="../fig/step_3.png" alt="Login Screen" width="1200">
 
@@ -49,27 +49,27 @@ You shall see something like this, if all ok,
 
 if things go wrong or you need to create an instance with an updated image you need to follow the following steps.
 
-#. get the hub settings: File -> Hub Control Panel
+- get the hub settings: File -> Hub Control Panel
 
 <img src="../fig/step_5.png" alt="hub control panel settings" width="1200">
 
-#. stop the instance
+- stop the instance
 
    stop the instance by clicking on the "Stop My Server" button then once stopped you can click Logout.
 
 <img src="../fig/step_6.png" alt="stop server and logout" width="1200">
 
-#. start the instance
+- start the instance
 
 <img src="../fig/step_7.png" alt="start a new instance" width="1200">
 
-#. choose the instance: (Test) - ASE Image
+- choose the instance: (Test) - ASE Image
 
 
 <img src="../fig/step_8.png" alt="stop server and logout" width="1200">
 
 
-### Obtain exercises
+### Obtain the exercises
 
 open a terminal
 
