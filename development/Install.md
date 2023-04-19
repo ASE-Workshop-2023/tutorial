@@ -22,9 +22,9 @@ conda create --name ase-tutorial
 conda activate ase-tutorial
 # https://www.vasp.at/forum/viewtopic.php?t=18626
 conda install -c conda-forge mopac nglview qe ipywidgets=7
-conda install numpy scipy matplotlib jupyter
-conda install pip
-pip install ase gpaw quippy-ase
+conda install jupyter pip
+pip install gpaw quippy-ase
+pip install git+https://gitlab.com/ase/ase.git@master
 ```
 
 run 
