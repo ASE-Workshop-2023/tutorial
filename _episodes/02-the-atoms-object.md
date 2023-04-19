@@ -52,7 +52,7 @@ molecule = Atoms('N2', positions=[(0., 0., 0.), (0., 0., d)])
 
 ~~~
 from ase.visualize import view
-view(molecule,cartoon)
+view(molecule, 'cartoon')
 ~~~
 {: .python}
 
@@ -213,7 +213,7 @@ Center of mass after modifying masses:
 {: .output}
 
 > ## Accessing help
-> In a jupyter notebook we can get the "docstring" of a method or function by adding ? to the name
+> In a jupyter notebook or IPython terminal we can get the "docstring" of a method or function by adding ? to the name
 >
 > ~~~
 > isotope.get_center_of_mass?

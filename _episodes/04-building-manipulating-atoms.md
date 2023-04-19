@@ -11,7 +11,7 @@ objectives:
     - "Build (optimal) supercell expansions"
     - "Remove, add or swap atom(s) to create point defects"
 keypoints:
-    - "A set of simple molecules are pred-defined in ASE"
+    - "A set of simple molecules are pre-defined in ASE"
     - "There are pre-defined lattice parameters and crystal types to create bulk systems"
     - "A compact notation can be used to create a supercell"
     - "Cell parameters can be inspected using the `Atoms.cell` attribute"
@@ -124,8 +124,8 @@ show(si * [2, 4, 1])
 - Our starting point for this is often a non-cubic _primitive_ cell.
 
 ~~~
-si_prime = ase.build.bulk('Si')
-show(si_prime)
+si_prim = ase.build.bulk('Si')
+show(si_prim)
 ~~~
 {: .python}
 
@@ -150,6 +150,10 @@ Cell([[0.0, 2.715, 2.715], [2.715, 0.0, 2.715], [2.715, 2.715, 0.0]])
 
 - Once we have a primitive cell, we can perform a numerical search to find the optimal 3x3 array for forming the most cubic supercell; this process may take a few seconds.
 - We specify three positional arguments: unit cell parameters, the target size of the supercell, and the target shape. For more information, you can inspect the docstring.
+
+> ## Academic background
+This algorithm is described in more detail in the [ASE docs](https://wiki.fysik.dtu.dk/ase/tutorials/defects/defects.html), and was developed to support [supercell doping calculations](https://doi.org/10.1103/PhysRevB.91.165206)
+{: .callout}
 
 ~~~
 optimal_array = ase.build.find_optimal_cell_shape(si_prim.cell, 4, 'sc', verbose=True)
@@ -280,7 +284,7 @@ show(composite)
 
 <img src="../fig/ZnS_composite.png" alt="image of ZnS with H interstitial" width="200">
 
-- While `Atoms` is not exactly a regular Python object, it plays nicely with the delete operation. 
+- While `Atoms` is not exactly a regular Python data collection, it plays nicely with the delete operation.
 - We can use this operation to create, for example, a zinc-vacancy defect:
 
 ~~~
