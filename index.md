@@ -25,8 +25,8 @@ instructor: ["Pietro Delugas", "Adam Jackson", "Lucy Whalley"]
 > please contact the workshop organisers and alternative
 > arrangements will be made.
 >
-> If you want to run this tutorial on your own computer
-> then please see the [Setup instructions].
+> If you want to run this tutorial on your own computer (**not** required for the Daresbury workshop)
+> then please see the [Installation instructions](https://ase-workshop-2023.github.io/tutorial/installation).
 > 
 > This tutorial assumes that you have no prior knowledge of ASE; it is
 > aimed at complete beginners. We do assume you have basic familiarity with
