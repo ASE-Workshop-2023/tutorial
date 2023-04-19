@@ -25,25 +25,25 @@ Use the username given at registration and following instructions to setup your 
 #. Go to training.jupyter.stfc.ac.uk into your browser
 #. Signup: click on **Signup** then use the username given and choose password and click **Create User**
 
-<img src="../fig/step_0.png" alt="landing page screen" width="600">
+<img src="../fig/step_0.png" alt="landing page screen" width="1200">
 
 
-<img src="../fig/step_1.png" alt="Signup page" width="600">
+<img src="../fig/step_1.png" alt="Signup page" width="1200">
 
 Authorization happens behind the scenes if successful you will see something like.
 
-<img src="../fig/step_2.png" alt="Signup page" width="600">
+<img src="../fig/step_2.png" alt="Signup page" width="1200">
 
 
 #. Login with the credentials from above
 
-<img src="../fig/step_3.png" alt="Login Screen" width="600">
+<img src="../fig/step_3.png" alt="Login Screen" width="1200">
 
 
 You shall see something like this, if all ok,
 
 
-<img src="../fig/step_4.png" alt="Login success" width="600">
+<img src="../fig/step_4.png" alt="Login success" width="1200">
 
 #### Stop instance and update
 
@@ -51,42 +51,36 @@ if things go wrong or you need to create an instance with an updated image you n
 
 #. get the hub settings: File -> Hub Control Panel
 
-<img src="../fig/step_5.png" alt="hub control panel settings" width="600">
+<img src="../fig/step_5.png" alt="hub control panel settings" width="1200">
 
 #. stop the instance
 
    stop the instance by clicking on the "Stop My Server" button then once stopped you can click Logout.
 
-<img src="../fig/step_6.png" alt="stop server and logout" width="600">
+<img src="../fig/step_6.png" alt="stop server and logout" width="1200">
 
 #. start the instance
 
-<img src="../fig/step_7.png" alt="start a new instance" width="600">
+<img src="../fig/step_7.png" alt="start a new instance" width="1200">
 
 #. choose the instance: (Test) - ASE Image
 
-.. _screen10:
-.. figure:: step_8.png
-    :width: 600px
-    :align: center
-    :figclass: align-center
 
-<img src="../fig/step_8.png" alt="stop server and logout" width="600">
+<img src="../fig/step_8.png" alt="stop server and logout" width="1200">
 
 
 ### Obtain exercises
 
 open a terminal
 
-.. code-block:: bash
-
+~~~
    cd
    git clone xxx WORKSHOP
-
+~~~
 
 a WORKSHOP folder will appear on the left hand side and now you can navigate inside it and find the relevant notebook of the day.
 
-<img src="../fig/step_9.png" alt="WORKSHOP checkout space" width="600">
+<img src="../fig/step_9.png" alt="WORKSHOP checkout space" width="1200">
 
 #### Browsers
 
