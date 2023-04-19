@@ -46,7 +46,7 @@ molecule = Atoms('N2', positions=[(0., 0., 0.), (0., 0., d)])
 
 ### `ase.visualize.view` and `nglview` can be used to visualise an `Atoms` object
 
-- It can be useful to visualise our structure to make sure it is reasonable. 
+- It can be useful to visualise our structure to make sure it is reasonable.
 - `ase.visualize.view` provides a simple structure viewer in a floating window; this is quite useful when working on a Python script, but can be a little bit annoying when using a Jupyter notebook.
 - With `ase.visualize.view` you can spin the molecule around with right-click-and-drag, and zoom with mouse wheel.
 
@@ -58,7 +58,7 @@ view(molecule,cartoon)
 
 <img src="../fig/view_molecule_popout.png" alt="image of molecule in floating window" width="300">
 
-- Some alternative viewers are available for Jupyter notebooks; here we will use `nglview`. 
+- Some alternative viewers are available for Jupyter notebooks; here we will use `nglview`.
 - `nglview` is able to display trajectories and sequences of structures, a feature which we will use in later tutorials.
 - With `nglview` left-click-and-drag is used for rotation.
 
@@ -72,17 +72,17 @@ nglview.show_ase(molecule)
 
 ### To describe crystals we use the `cell` and `pbc` keywords
 
-- Many interesting systems are crystals, described by atomic positions in a periodic unit cell. 
+- Many interesting systems are crystals, described by atomic positions in a periodic unit cell.
 - There are two relevant keyword settings for an `Atoms` object: the unit cell itself (`cell`) and the periodic boundary conditions (`pbc`).
-- If the cell is specified with three values it is assumed to be cubic. 
+- If the cell is specified with three values it is assumed to be cubic.
 - In other cases we might use the full 3x3 matrix to describe off-diagonal terms, e.g. ```cell=[[a, -a, 0], [a, a, 0], [0, 0, a]]```
 - Once a `cell` is specified we can use the `scaled_positions` keyword to specify atomic positions relative to lattice vectors.
-- We set `pbc=True` to indicate periodic boundary conditions in all directions. 
+- We set `pbc=True` to indicate periodic boundary conditions in all directions.
 - PBCs can also be specified along each direction, e.g. `pbc=[True, True, False]` for a “slab” calculation with exposed surfaces.
 
 > ## Shortcuts
-> We have defined a Python function ```show()``` which will show enlarged atoms 
-> and a unit cell with `nglview`. 
+> We have defined a Python function ```show()``` which will show enlarged atoms
+> and a unit cell with `nglview`.
 > This will save us from writing four lines of code every time we want to display a crystal.
 {: .callout}
 
@@ -100,7 +100,7 @@ crystal = Atoms('Zn4S4',
                cell=[a, a, a],
                pbc=True)
 
-def show(atoms: Atoms) -> nglview.widget.NGLWidget:    
+def show(atoms: Atoms) -> nglview.widget.NGLWidget:
     view = nglview.show_ase(atoms)
     if any(atoms.pbc):
         view.add_unitcell()
@@ -113,9 +113,9 @@ show(crystal)
 
 <img src="../fig/atom_show.png" alt="image of Zn4S4 with unit cell" width="300">
 
-### To access information from `Atoms` we use "getter" methods 
+### To access information from `Atoms` we use "getter" methods
 
-- Now that we have some Atoms objects we can see what information is available from them. 
+- Now that we have some Atoms objects we can see what information is available from them.
 - To access this information we call some "getter" methods on the `molecule` object we created above.
 - Information about the chemical species and atomic positions is provided by us when we create the object.
 
@@ -242,7 +242,7 @@ Center of mass after modifying masses:
 {: .callout}
 
 > ## Exercise: Atom features
-> Use tab-completion and docstrings to explore the features of `Atoms`. In the 
+> Use tab-completion and docstrings to explore the features of `Atoms`. In the
 > ZnS structure, find the distance between the first Zn atom and the four S
 > atoms. Are some of them nearer than others?
 >
