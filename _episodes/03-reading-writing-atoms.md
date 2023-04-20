@@ -29,18 +29,28 @@ keypoints:
 
 ### ASE can read a variety of file formats
 
+
+> ## Downloading structures
+> The Materials Project (MP) contains over 150,000 entries.
+> To obtain a .cif through a browser window navigate to an entry and use the 
+> "export as" button on the structure visualiser. Alternatively, we have uploaded
+> a [small selection of MP structures](https://github.com/ASE-Workshop-2023/tutorial/tree/gh-pages/data) which you can download using `wget`. For example, you can run the following command in your Jupyter Notebook to get the `ZnS.cif` file:
+> ~~~
+> %%bash 
+> 
+> wget https://github.com/ASE-Workshop-2023/tutorial/blob/gh-pages/data/ZnS.cif
+> ~~~
+> {: .bash}
+> 
+> There is
+> also a [Materials Project Application Programming
+> Interface (API)](https://materialsproject.org/api) for accessing structures (and more!)
+> programmatically.
+{: .callout}
+
 - Even with the shortcuts outlined in the previous tutorial, writing out structures in Python syntax can be a bit cumbersome. 
 - There are many established file formats for structural data, and ASE contains read and write functions for some of them.
 - In the example below we read in the structure for sphalerite (ZnS) from the Materials Project database; the database entry is [here](https://materialsproject.org/materials/mp-10695).
-
-> ## Downloading structures
-> The Materials Project contains over 150,000 entries.
-> To obtain a .cif file navigate to an entry and use the 
-> "export as" button on the structure visualiser. There is
-> also a [Materials Project Application Programming
-> Interface (API)]() for accessing structures (and more!)
-> programmatically.
-{: .callout}
 
 ~~~
 import ase.io
