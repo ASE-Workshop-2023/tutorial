@@ -127,6 +127,11 @@ fit = Polynomial.fit(distances, energies, 3)
 
 - Finally we use Matplotlib to visualise the data and fit
 
+> ## IPython Magics
+> `%matplotlib inline` turns on “inline plotting”, where plots will appear in your notebook rather than as a separate pop-out window.
+> This is our first example of an [IPython magic command](https://ipython.readthedocs.io/en/stable/interactive/magics.html). You will see more examples later in the tutorial.
+{: .callout}
+
 ~~~
 %matplotlib inline
 
