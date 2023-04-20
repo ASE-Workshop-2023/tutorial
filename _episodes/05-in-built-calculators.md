@@ -31,14 +31,15 @@ keypoints:
 
 ### Properties of metal alloy systems can be calculated using Effective Medium Theory
 
-> ## Warning
-> If you want to do a real application using EMT, you should used the much more efficient implementation in the [ASAP calculator](https://wiki.fysik.dtu.dk/asap).
-{: .callout}
-
 - Much of the ASE documentation and tutorials makes use of the [built-in "EMT" calculator](https://wiki.fysik.dtu.dk/ase/ase/calculators/emt.html#pure-python-emt-calculator)
 - This is because it is convenient and "fast enough"
 - EMT implements the Effective Medium Theory potential for Ni, Cu, Pd, Ag, Pt and Au. 
 - Some other elements are included "for fun", but really this is a method for alloys of those metals. 
+
+> ## Warning
+> If you want to do a real application using EMT, you should use the much more efficient implementation in the [ASAP calculator](https://wiki.fysik.dtu.dk/asap).
+{: .callout}
+
 
 ### Calculators can calculate properties in three easy steps
 
@@ -47,8 +48,8 @@ keypoints:
 
 > ## Python tip
 > You may not recognise or understand the syntax used in the function definition, for example
-> `spacing: float = 2.5`. These are optional [Type Hints](https://peps.python.org/pep-0484/
-), and the syntax for this was defined relatively recently. 
+> `spacing: float = 2.5`. These are optional [Type Hints](https://peps.python.org/pep-0484/),
+> which were added in Python 3.5 (2015) and are becoming more widely-used as support is dropped for older versions.
 {: .callout}
 
 ~~~
@@ -145,7 +146,7 @@ _ = ax.set_ylabel('Energy / eV')
 
 > ## Exercise: Equation of State for bulk gold
 > The plot above resembles the Equation-of-State (EOS) curve for a solid. 
-> Using a similar workflow and [`EquationOfState`](https://wiki.fysik.dtu.dk/ase/ase/eos.html) class, fit an equation of state to bulk gold and obtain an equilibrium volume.
+> Using a similar workflow and the [`EquationOfState`](https://wiki.fysik.dtu.dk/ase/ase/eos.html) class, fit an equation of state to bulk gold and obtain an equilibrium volume.
 {: .challenge}
 
 ### The EMT Calculator can also be used to obtain forces and unit cell stress
@@ -215,7 +216,7 @@ print(properties)
 ### The Lennard-Jones potential can be used to model the interaction between two non-bonding atoms or molecules
 
 - The classic [Lennard-Jones potential](https://en.wikipedia.org/wiki/Lennard-Jones_potential) is implemented in `ase.calculators.lj`. 
-- You can set the $\epsilon$ and $\sigma$ parameters in the Calculator constructor:
+- You can set the ε and σ parameters in the Calculator constructor:
 
 ~~~
 from ase.calculators.lj import LennardJones
