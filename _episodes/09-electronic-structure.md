@@ -67,7 +67,7 @@ si_fcc = Atoms(symbols='Si2',
 from pathlib import Path
 import json
 
-pseudo_dir = str(Path.home() / 'SSSP-1.2.1_PBE_efficiency')
+pseudo_dir = Path.home() / 'SSSP-1.2.1_PBE_efficiency'
 with open(str(pseudo_dir / 'SSSP_1.2.1_PBE_efficiency.json')) as fj:
   dj = json.load(fj) 
 ecutwfc = dj['Si']['cutoff_wfc']
@@ -88,7 +88,7 @@ atomic_species = {'Si':dj['Si']['filename']}
 control = {'calculation': "scf",
            'prefix': "si_fcc",
            'outdir': str(Path('./si_fcc/out).absolute()) ,
-           'pseudo_dir': pseudo_dir,
+           'pseudo_dir': str(pseudo_dir),
            'tprnfor': True,
            'tstress': True}
 system = {'ecutwfc': ecutwfc,
@@ -107,10 +107,9 @@ electrons = {'diagonalization':'davidson',
    - one where we run with 4 MPI ranks using pools parallelization
 
 ~~~
-from ase.calculator.espresso import EspressoProfile
+from ase.calculators.espresso import EspressoProfile
 
-qepath = str(Path.home() / 'qe-7.2')
-plain_argv = ['mpirun', '-np', '4', f"{qepath}/bin/pw.x"]
+plain_argv = ['mpirun', '-np', '4', 'pw.x']
 pools_argv = ['-nk', '4']
 profile = EspressoProfile(plain_argv)
 profile_4pools = EspressoProfile(plain_argv + pools_argv)    
@@ -255,7 +254,7 @@ nscf_calc = Espresso(directory =nscf_directory,
 
 si_fcc_nscf = si_fcc.copy()
 si_fcc_nscf.calc = nscf_calc
-nscf_results = nscf_calc.get_properties(['eigenvalues'])
+nscf_results = si_fcc_nscf.get_properties(['eigenvalues'])
 ~~~ 
 {: .python}
 
