@@ -194,6 +194,9 @@ Energy per atom: Epot = 0.018eV  Ekin = 0.024eV (T=189K)  Etot = 0.043eV
 
 > ## Discussion
 > As the system equilibrates, energy is conserved but the temperature is about half of the original setting. Why?
+> > ## Solution
+> > We started with _momenta_ corresponding to 300K, but ideal lattice _positions_ which correspond to 0K (in classical dynamics). The [equipartition theorem](https://en.wikipedia.org/wiki/Equipartition_theorem) states that energy should be shared equally, so half of the kinetic energy makes its way into potential energy and we are left with the momentum distribution of a lower temperature.
+> {: .solution}
 {: .challenge}
 
 ### Attach an observer function to track properties
@@ -210,6 +213,27 @@ dyn.run(100)
 
 > ## Exercise: RMS displacement
 > Use an observer to measure the average root-mean-square displacement of Cu atoms at 300K.
+>
+> Hint: if the numbers seem too large, try visualising the trajectory to see what could be causing a problem.
+>
+> > ## Solution
+> > ~~~
+> > import numpy as np
+> > ref_atoms = ase.build.bulk('Cu', cubic=True) * [3, 3, 3]
+> > ref_atoms.center()  # Shift centre-of-mass to the origin
+> >
+> > def rms_observer():
+> >     cu_cube.center()  # Remove drift, make consistent with ref
+> >     displacements = cu_cube.positions - ref_atoms.positions
+> >     rms_displacements = np.sqrt((displacements**2).mean(axis=0))
+> >     print(rms_displacements)
+> >
+> > dyn = VelocityVerlet(cu_cube, 5 * units.fs)
+> > dyn.attach(rms_observer, interval=50)
+> > dyn.run(400)
+> > ~~~
+> > {: .python}
+> {: .solution}
 {: .challenge}
 
 ### Attach a `Trajectory` object to track atom positions
