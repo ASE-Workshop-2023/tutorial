@@ -22,8 +22,8 @@ keypoints:
 
 ### The `quippy` package provides a Python interface to a range of interatomic and tight-binding potentials
 
-- Some calculators have interfaces which are not packaged with ASE, but available elsewhere. 
-- For example, the `quippy` package provides a Python interface to a range of interatomic and tight-binding potentials. 
+- Some calculators have interfaces which are not packaged with ASE, but available elsewhere.
+- For example, the `quippy` package provides a Python interface to a range of interatomic and tight-binding potentials.
 - In this chapter we apply a machine-learning-based potential for Si.
 
 > ## Getting the model and training data
@@ -36,7 +36,7 @@ keypoints:
 > unzip Si_PRX_GAP.zip
 > ~~~
 > {: .bash}
-> 
+>
 {: .callout}
 
 > ## Note
@@ -59,7 +59,7 @@ si.calc = Potential(param_filename='path/to/Si_PRX_GAP/gp_iter6_sparse9k.xml')
 ~~~
 {: .python}
 
-- Third, we calculate an energy; in this case we place this in a `For` loop and apply a random walk to the positions.
+- Third, we calculate an energy; in this case we place this in a `for` loop and apply a random walk to the positions.
 
 ~~~
 energies = []
@@ -76,14 +76,14 @@ ax.set_ylabel('Energy / eV')
 
 ![](../fig/energy_random_walk_plot.png)
 
-- This is a bit more expensive than EMT but still a lot cheaper than density-functional theory! 
+- This is a bit more expensive than EMT but still a lot cheaper than density-functional theory!
 - A lot of work goes into developing a new potential, but with tools like quippy and ASE it is fairly easy for researchers to pick up the resulting model and apply it.
 
-### Quantum Espresso is a suite of programs for electronic structure calculations 
+### Quantum Espresso is a suite of programs for electronic structure calculations
 
 - Here we use the `pw.x` program for DFT calculations with a plane-wave basis set and pseudopotentials.
-- First we need to find our pseudopotentials library and pass this information to the Calculator. 
-- In the virtual environment for these tutorials it can be found here:
+- First we need to find our pseudopotentials library and pass this information to the Calculator.
+- The "Standard Solid-State Pseudopotentials" library is a general-purpose set available in "precision" and "efficiency" versions; for this tutorial we suggest to download the "efficiency" set [from this page](https://www.materialscloud.org/discover/sssp/table/efficiency).
 
 ~~~
 from pathlib import Path
@@ -95,15 +95,18 @@ pseudo_dir = str(
 
 ### Socket interfaces allow more efficient communication and data re-use
 
-- Computing the energy/forces for a series of related structures (e.g. during geometry optimisation), DFT codes typically re-use previously calculated wavefunctions to obtain a good starting estimate. 
+- Computing the energy/forces for a series of related structures (e.g. during geometry optimisation), DFT codes typically re-use previously calculated wavefunctions to obtain a good starting estimate.
 - Using a file-based ASE calculator, each calculation is essentially independent; not only do we miss out on wavefunction re-use, but we incur overhead as the code is "rebooted" (and memory re-allocated, pseudopotentials loaded, etc.).
 - This problem is addressed by codes implementing a socket interface.
-- Here the calculation is initialised once and the code waits to receive a set of atomic positions. It calculates energies and forces, then awaits the next set of positions. 
+- Here the calculation is initialised once and the code waits to receive a set of atomic positions. It calculates energies and forces, then awaits the next set of positions.
 - Typically this is done by the "i-Pi protocol" developed to support calculation of nuclear quantum effects.
 - For the Espresso and FHI-Aims calculators in ASE, this is implemented as wrapper around the main calculator; for VASP and CP2K it works differently.
 
 ~~~
+from ase.calculators.qe import Espresso, EspressoProfile
 from ase.calculators.socketio import SocketIOCalculator
+
+profile = EspressoProfile(['pw.x'])
 
 calc = Espresso(profile=profile,
                 pseudo_dir=pseudo_dir,
@@ -113,7 +116,7 @@ calc = Espresso(profile=profile,
                             'system': {'ecutwfc': 40.}},
                 pseudopotentials={'Si': 'Si.pbe-n-rrkjus_psl.1.0.0.UPF'})
 
-calc = SocketIOCalculator(calc=calc, unixsocket='new-random-walk-socket') 
+calc = SocketIOCalculator(calc=calc, unixsocket='random-walk-socket')
 ~~~
 {: .python}
 

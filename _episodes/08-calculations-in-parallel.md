@@ -18,7 +18,7 @@ keypoints:
     - "To accelerate our calculation we can parallelise the code over several cores"
     - "`parprint` and `paropen` are provided in ASE as an alternative to `print` and `open`"
     - "Quantum Espresso can also be used for parallel programming with MPI"
-    - "Each ``Calculator` has its own keywords to match the input syntax of the corresponding software code"
+    - "Each `Calculator` has its own keywords to match the input syntax of the corresponding software code"
     - "Once we have setup the calculator we use the same three step process to retrieve a property"
 ---
 
@@ -105,7 +105,7 @@ Initialize ...
 
 ### It is important to check for convergence of the energy with respect to k-point sampling
 
-- Using a `For` loop we can re-run the calculation for a increasing k-point mesh densities.
+- Using a `for` loop we can re-run the calculation for a increasing k-point mesh densities.
     - In this case we pass a dictionary specification that generates a mesh that is shifted off the Gamma-point.
     - We also use the `txt` keyword to direct output to a text file.
 - We collect timing information to understand how increasing mesh density impacts calculation cost. 
