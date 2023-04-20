@@ -165,5 +165,5 @@ MOPAC Job: "isopropyl-alcohol.mop" ended normally on Apr  3, 2023, at 21:29.
 {: .output}
 
 > ## Discussion
-> What happens to calc.results when a parameter is changed? When might we prefer to use ``atoms.get_forces()` vs `atoms.calc.results['forces']`?
+> What happens to calc.results when a parameter is changed? When might we prefer to use `atoms.get_forces()` vs `atoms.calc.results['forces']`?
 {: .discussion}
