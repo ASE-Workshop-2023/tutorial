@@ -21,7 +21,7 @@ keypoints:
 ---
 
 > ## Code connection
-> In this chapter we explore the [`ase.build` module](https://wiki.fysik.dtu.dk/ase/ase/build/build.html), which contains tools for building structures using parameters rather than detailed lists of positions.
+> In this episode we explore the [`ase.build` module](https://wiki.fysik.dtu.dk/ase/ase/build/build.html), which contains tools for building structures using parameters rather than detailed lists of positions.
 {: .callout}
 
 ### A set of simple molecules are pre-defined in ASE
@@ -31,14 +31,16 @@ keypoints:
 
 ~~~
 import ase.build
+from ase.visualize import view
+
 g2_n2 = ase.build.molecule('N2')
-show(g2_n2)
+view(g2_n2, viewer='ngl')
 ~~~
 {: .python}
 
 <img src="../fig/N2.png" alt="image of N2" width="100">
 
-- If we inspect the type of `g2_n2` we see that it is an `Atoms` object, just like that we created manually in earlier chapters.
+- If we inspect the type of `g2_n2` we see that it is an `Atoms` object, just like that we created manually in earlier episodes.
 
 ~~~
 type(g2_n2)
@@ -53,7 +55,7 @@ ase.atoms.Atoms
 - And it's just as easy to get more interesting things like a buckyball! 
 
 ~~~
-show(ase.build.molecule('C60'))
+view(ase.build.molecule('C60'), viewer='ngl')
 ~~~
 {: .python}
 
@@ -66,7 +68,7 @@ show(ase.build.molecule('C60'))
 - So we get copper, for example, with very little work:
 
 ~~~
-show(ase.build.bulk('Cu', cubic=True))
+view(ase.build.bulk('Cu', cubic=True), viewer='ngl')
 ~~~
 {: .python}
 
@@ -75,11 +77,12 @@ show(ase.build.bulk('Cu', cubic=True))
 - To create ZnS in the zincblende structure we have to provide the `crystalstructure` and the lattice parameter `a`.
 
 ~~~
-show(
+view(
     ase.build.bulk('ZnS',
                    crystalstructure='zincblende',
                    a=5.387,
-                   cubic=True)
+                   cubic=True), 
+    viewer='ngl'
 )
 ~~~
 {: .python}
@@ -94,7 +97,7 @@ show(
 
 ~~~
 si = ase.build.bulk('Si', cubic=True)
-show(si)
+view(si, viewer='ngl')
 ~~~
 {: .python}
 
@@ -103,7 +106,7 @@ show(si)
 - Use integer multiplication to perform equal repetition in each direction:
 
 ~~~
-show(si * 4)
+view(si * 4, viewer='ngl')
 ~~~
 {: .python}
 
@@ -112,7 +115,7 @@ show(si * 4)
 - Use a 3-list or 3-tuple to perform unequal repetitions in each direction:
 
 ~~~
-show(si * [2, 4, 1])
+view(si * [2, 4, 1], viewer='ngl')
 ~~~
 {: .python}
 
@@ -124,8 +127,8 @@ show(si * [2, 4, 1])
 - Our starting point for this is often a non-cubic _primitive_ cell.
 
 ~~~
-si_prim = ase.build.bulk('Si')
-show(si_prim)
+si_prime = ase.build.bulk('Si')
+view(si_prime, viewer='ngl')
 ~~~
 {: .python}
 
@@ -191,7 +194,7 @@ determinant of optimal transformation matrix: 4
 
 ~~~
 cubic_Si_expansion = ase.build.make_supercell(si_prim, optimal_array)
-show(cubic_Si_expansion)
+view(cubic_Si_expansion, viewer='ngl')
 ~~~
 
 <img src="../fig/Si.png" alt="image of unit cell of Si" width="200">
@@ -252,7 +255,7 @@ S [4.04025 4.04025 1.34675] 32.06
 ~~~
 zinc_indices = [i for i, atom in enumerate(crystal) if atom.symbol == 'Zn']
 zinc_sublattice = crystal[zinc_indices]
-show(zinc_sublattice)
+view(zinc_sublattice, viewer='ngl')
 ~~~
 {: .python}
 
@@ -278,7 +281,7 @@ ase.atoms.Atoms
 from ase import Atom
 composite = zinc_sublattice.copy()
 composite.append(Atom('He', position=(1.34675, 4.04025, 4.04025)))
-show(composite)
+view(composite, viewer='ngl')
 ~~~
 {: .python}
 
@@ -290,7 +293,7 @@ show(composite)
 ~~~
 zinc_vacancy = crystal.copy()
 del zinc_vacancy[0]
-show(zinc_vacancy)
+view(zinc_vacancy, viewer='ngl')
 ~~~
 {: .python}
 
@@ -301,7 +304,7 @@ show(zinc_vacancy)
 ~~~
 antisite = crystal.copy()
 antisite.positions[[0, 1]] = antisite.positions[[1, 0]]
-show(antisite)
+view(antisite, viewer='ngl')
 ~~~
 {: .python}
 
@@ -316,7 +319,7 @@ show(antisite)
 > > ~~~
 > > sulfur_sublattice = [i for i, atom in enumerate(crystal) if atom.symbol == 'S']
 > > sulfur_sublattice.translate([.3, 0., 0.])
-> > show(zinc_sublattice + sulfur_sublattice)
+> > view(zinc_sublattice + sulfur_sublattice, viewer='ngl')
 > > ~~~
 > > {: .python}
 > {: .solution}

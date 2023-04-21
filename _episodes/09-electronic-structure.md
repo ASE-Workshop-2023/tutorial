@@ -20,7 +20,7 @@ keypoints:
 ---
 
 > ## Code connection
-> In this chapter we will use [Quantum Espresso](https://www.quantum-espresso.org/) to calculate the electronic structure (bandstructure and density of states) of silicon. We will analyse and plot the electronic structure using `ase.dft` and `ase.spectrum`.
+> In this episode we will use [Quantum Espresso](https://www.quantum-espresso.org/) to calculate the electronic structure (bandstructure and density of states) of silicon. We will analyse and plot the electronic structure using `ase.dft` and `ase.spectrum`.
 {: .callout}
 
 ### We now have all the tools in place to calculate electronic structure properties

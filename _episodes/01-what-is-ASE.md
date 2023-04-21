@@ -25,10 +25,10 @@ keypoints:
 - There are two core classes in ASE: `Atoms` and `Calculator`.
 
 > ## NumPy
-> ASE makes strong use of [NumPy arrays](). NumPy arrays have a host of useful features such as
+> ASE makes strong use of [NumPy arrays](https://numpy.org/doc/stable/user/basics.html). NumPy arrays have a host of useful features such as
 > array slicing, and ensure that there is efficient performance even for thousands or millions
 > of atoms. If you are unfamiliar with NumPy arrays there is a 
-> brief overview on the [ASE website]().
+> brief overview on the [ASE website](https://wiki.fysik.dtu.dk/ase/numpy.html).
 {: .callout}
 
 ### ASE uses several design patterns from object oriented programming (OOP). 
@@ -85,13 +85,13 @@ beethoven = Composer(birth_year=1770)
 
 - The modular design of ASE allows it to play nicely with ("interoperate") with many different atomistic simulation codes. 
 - This includes codes implementing density functional theory, (semi-)empirical methods, tight-binding models and classical interatomic potentials. 
-- For a full list of supported codes please see the [ASE documentation]().
+- For a full list of supported codes please see the [ASE documentation](https://wiki.fysik.dtu.dk/ase/ase/calculators/calculators.html#supported-calculators).
 
 > ## Course structure
 > The structure of this course is designed to reflect the structure of ASE. 
-> First we introduce the `Atoms` object (chapters 2-4) and `Calculators` object (chapters 5-6). 
-> We then outline how to simulate more complex and computationally demanding systems by parallelising over multiple compute cores (chapter 7). 
-> Finally we apply our understanding to three common tasks: molecular dynamics, geometry optimisation and electronic structure calculations (chapter 9).
+> First we introduce the `Atoms` object (episodes 2-4) and `Calculators` object (episodes 5-7). 
+> We then outline how to simulate more complex and computationally demanding systems by parallelising over multiple compute cores (episode 8). 
+> Finally we apply our understanding to three common tasks: molecular dynamics, geometry optimisation and electronic structure calculations (episodes 9-11).
 > As the course progresses we move from smaller code snippets introducing the core ASE objects, to extended pieces of code for more complex tasks.
 > Throughout the course you will see boxes like this. They will provide Python hints, signposting to other resources, discussion prompts or exercises for you to complete.
 {: .callout}

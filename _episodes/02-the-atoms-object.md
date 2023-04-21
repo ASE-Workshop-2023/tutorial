@@ -22,7 +22,7 @@ keypoints:
 ---
 
 > ## Code connection
-> In this chapter we explore the [`Atoms` class](https://wiki.fysik.dtu.dk/ase/ase/atoms.html#list-of-all-methods), which contains methods for getting and setting simple properties for a molecule or material.
+> In this episode we explore the [`Atoms` class](https://wiki.fysik.dtu.dk/ase/ase/atoms.html#list-of-all-methods), which contains methods for getting and setting simple properties for a molecule or material.
 {: .callout}
 
 ### Molecules and materials are represented by the `Atoms` class
@@ -47,24 +47,13 @@ molecule = Atoms('N2', positions=[(0., 0., 0.), (0., 0., d)])
 ### `ase.visualize.view` and `nglview` can be used to visualise an `Atoms` object
 
 - It can be useful to visualise our structure to make sure it is reasonable.
-- `ase.visualize.view` provides a simple structure viewer in a floating window; this is quite useful when working on a Python script, but can be a little bit annoying when using a Jupyter notebook.
-- With `ase.visualize.view` you can spin the molecule around with right-click-and-drag, and zoom with mouse wheel.
-
-~~~
-from ase.visualize import view
-view(molecule, 'cartoon')
-~~~
-{: .python}
-
-<img src="../fig/view_molecule_popout.png" alt="image of molecule in floating window" width="300">
-
-- Some alternative viewers are available for Jupyter notebooks; here we will use `nglview`.
-- `nglview` is able to display trajectories and sequences of structures, a feature which we will use in later tutorials.
+- `ase.visualize.view` can be used is able to display trajectories and sequences of structures, a feature which we will use in later tutorials.
+- The `nglview` backend integrates nicely with Jupyter notebooks, so that structures are displayed "inline" rather than in a pop-out window.
 - With `nglview` left-click-and-drag is used for rotation.
 
 ~~~
-import nglview
-nglview.show_ase(molecule)
+from ase.visualize import view
+view(molecule, viewer='ngl')
 ~~~
 {: .python}
 
@@ -100,18 +89,11 @@ crystal = Atoms('Zn4S4',
                cell=[a, a, a],
                pbc=True)
 
-def show(atoms: Atoms) -> nglview.widget.NGLWidget:
-    view = nglview.show_ase(atoms)
-    if any(atoms.pbc):
-        view.add_unitcell()
-        view.add_ball_and_stick(aspectRatio=6)
-    return view
-
-show(crystal)
+view(crystal, viewer='ngl')
 ~~~
 {: .python}
 
-<img src="../fig/atom_show.png" alt="image of Zn4S4 with unit cell" width="300">
+<img src="../fig/ZnS_crystal.png" alt="image of Zn4S4 with unit cell" width="300">
 
 ### To access information from `Atoms` we use "getter" methods
 
@@ -237,7 +219,8 @@ Center of mass after modifying masses:
 > ~~~
 > crystal.[TAB]
 > ~~~
-> { :.python}
+> {: .python}
+>
 > where `[TAB]` means "hit the TAB key". You should see that the `Atoms` object has a lot of features available; however not all of them will work until we start using the `Calculator` class.
 {: .callout}
 
@@ -246,5 +229,5 @@ Center of mass after modifying masses:
 > ZnS structure, find the distance between the first Zn atom and the four S
 > atoms. Are some of them nearer than others?
 >
-> *Hint: you may need to use the "minimum image convention"*
+> Hint: you may need to use the "minimum image convention"
 {: .challenge}

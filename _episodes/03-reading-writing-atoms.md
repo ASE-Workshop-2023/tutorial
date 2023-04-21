@@ -24,7 +24,7 @@ keypoints:
 ---
 
 > ## Code connection
-> In this chapter we explore the [`ase.io` module](https://wiki.fysik.dtu.dk/ase/ase/io/io.html), which contains functions for reading and writing `Atoms` objects.
+> In this episode we explore the [`ase.io` module](https://wiki.fysik.dtu.dk/ase/ase/io/io.html), which contains functions for reading and writing `Atoms` objects.
 {: .callout}
 
 ### ASE can read a variety of file formats
@@ -44,7 +44,7 @@ keypoints:
 > 
 > There is
 > also a [Materials Project Application Programming
-> Interface (API)](https://materialsproject.org/api) for accessing structures (and more!)
+> Interface](https://materialsproject.org/api) (API) for accessing structures (and more!)
 > programmatically.
 {: .callout}
 
@@ -55,14 +55,15 @@ keypoints:
 ~~~
 import ase.io
 from pathlib import Path
+from ase.visualize import view
 
 imported_crystal = ase.io.read("./files/ZnS.cif", format='cif')
 
-show(imported_crystal)
+view(imported_crystal, viewer='ngl')
 ~~~
 {: .python}
 
-<img src="../fig/ZnS.png" alt="image of ZnS structure" width="250">
+<img src="../fig/ZnS_crystal.png" alt="image of ZnS structure" width="300">
 
 - Use the vim terminal text editor (or otherwise) to inspect the .cif file
 - Crystallographic Information Framework (CIF) is quite a complicated format because it is designed to hold a lot of data relevant to crystallography. 
@@ -221,7 +222,7 @@ print(len(atoms_all_frames))
 {: .python}
 
 ~~~
-list
+<class 'list'>
 5
 ~~~
 {: .output}
@@ -233,11 +234,11 @@ list
 
 ### To visualise a sequence of frames use the ASE GUI or write an animation
 
-- The built-in ASE GUI has some basic features to animate a list of `Atoms`.
+- The ASE `view` function has some basic features to animate a list of `Atoms`.
 - Try playing with the "movie" controls after running the code below.
 
 ~~~
-view(atoms_alternating)
+view(atoms_alternating, viewer='ngl')
 ~~~
 {: .python}
 

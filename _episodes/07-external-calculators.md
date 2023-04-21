@@ -17,14 +17,14 @@ keypoints:
 ---
 
 > ## Code connection
-> In this chapter we explore two external calculators: [Quippy](http://libatoms.github.io/QUIP/), which provides an interface to a range of interatomic and tight-binding potentials, including [Gaussian Approximation Potentials](https://libatoms.github.io/GAP/), and Socket calculations using the electronic structure code [Quantum Espresso](https://www.quantum-espresso.org/).
+> In this episode we explore two external calculators: [Quippy](http://libatoms.github.io/QUIP/), which provides an interface to a range of interatomic and tight-binding potentials, including [Gaussian Approximation Potentials](https://libatoms.github.io/GAP/), and Socket calculations using the electronic structure code [Quantum Espresso](https://www.quantum-espresso.org/).
 {: .callout}
 
 ### The `quippy` package provides a Python interface to a range of interatomic and tight-binding potentials
 
 - Some calculators have interfaces which are not packaged with ASE, but available elsewhere.
 - For example, the `quippy` package provides a Python interface to a range of interatomic and tight-binding potentials.
-- In this chapter we apply a machine-learning-based potential for Si.
+- In this episode we apply a machine-learning-based potential for Si.
 
 > ## Getting the model and training data
 > The documentation for Gaussian Approximation Potentials (GAP) links to a [few published GAP models](https://libatoms.github.io/GAP/data.html).
@@ -74,7 +74,7 @@ ax.set_ylabel('Energy / eV')
 ~~~
 {: .python}
 
-![](../fig/energy_random_walk_plot.png)
+<img src="../fig/energy_random_walk_plot.png" alt="Si random walk energy" width="400">
 
 - This is a bit more expensive than EMT but still a lot cheaper than density-functional theory!
 - A lot of work goes into developing a new potential, but with tools like quippy and ASE it is fairly easy for researchers to pick up the resulting model and apply it.

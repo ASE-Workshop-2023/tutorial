@@ -23,7 +23,7 @@ keypoints:
 ---
 
 > ## Code connection
-> In this chapter we will use the `ase.md` module to perform molecular dynamics and simulated annealing.
+> In this episode we will use the `ase.md` module to perform molecular dynamics and simulated annealing.
 {: .callout}
 
 ### Energies and forces can be used to update structures
@@ -241,15 +241,9 @@ dyn.run(100)
 - At modest temperature and under periodic boundary conditions, the atoms have not moved very far. 
 
 ~~~
-import nglview
+from ase.visualize import view
 
-def show(atoms: ase.Atoms) -> None:
-    view = nglview.show_ase(atoms)
-    if any(atoms.pbc):
-        view.add_unitcell()
-    return view
-
-show(cu_cube)
+view(cu_cube, viewer='ngl')
 ~~~
 {: .python}
 

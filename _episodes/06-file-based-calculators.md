@@ -19,26 +19,28 @@ keypoints:
 ---
 
 > ## Code connection
-> In this chapter we explore the [`ase.calculators.mopac` module](https://databases.fysik.dtu.dk/ase/ase/calculators/mopac.html), which is a file-based calculator for calculating standard properties (energy, forces and stress) from a set of atomic positions.
+> In this episode we explore the [`ase.calculators.mopac` module](https://databases.fysik.dtu.dk/ase/ase/calculators/mopac.html), which is a file-based calculator for calculating standard properties (energy, forces and stress) from a set of atomic positions.
 {: .callout}
 
 ### Typical academic codes are controlled by _input files_ and write their results to _output files_
 
 - This workflow is convenient for batch calculations on clusters (and for Fortran programmers...)
 - To interoperate with this type of code, the ASE Calculator needs to: i) prepare appropriate input; ii) call the executable; iii) read the output
-- This will allow us to build a similar workflow to the built-in Calculators explored in the previous chapter.
+- This will allow us to build a similar workflow to the built-in Calculators explored in the previous episode.
 
 ### The workflow for file-based and built-in calculators are the same
 
 - The file-based calculator [MOPAC](https://openmopac.github.io) implements semi-empirical methods with molecular orbitals in open boundary conditions. 
 - After a long history of versions and licenses it was recently updated and made open-source under the LGPL.
-- To calculate a system energy we use the same workflow as introduced in the previous chapter.
+- To calculate a system energy we use the same workflow as introduced in the previous episode.
 - First, we build an `Atoms` object
 
 ~~~
 import ase.build
+from ase.visualize import view
+
 atoms = ase.build.molecule('C2H6CHOH')
-show(atoms)
+view(atoms, viewer='ngl')
 ~~~
 {: .python}
 

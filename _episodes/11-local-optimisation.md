@@ -21,7 +21,7 @@ keypoints:
 ---
 
 > ## Code connection
-> In this chapter we will use the `ase.optimize` module to perform geometry optimisation, and `ase.constraints` to constrain or optimise various degrees of freedom.
+> In this episode we will use the `ase.optimize` module to perform geometry optimisation, and `ase.constraints` to constrain or optimise various degrees of freedom.
 {: .callout}
 
 ### To minimise energy and forces we typically use an optimisation algorithm
@@ -240,7 +240,7 @@ plt.plot(lengths, energies, 'o-')
 - First lets set up the `Atoms` object and attach the calculator
 
 > ## Note
-> More information on the Quippy `Potential` object for GAP can be found in the [External Calculators]() episode.
+> More information on the Quippy `Potential` object for GAP can be found in the [External Calculators](https://ase-workshop-2023.github.io/tutorial/07-external-calculators) episode.
 {: .callout}
 
 ~~~
@@ -309,7 +309,7 @@ Residual stress:
 ### MD and geometry optimization can be combined to find glassy local-minimum phases
 
 - Let's generate an amorphous Si cell by i) stretching a supercell and running a few steps of high-temperature MD; ii) performing a local optimisation to find a glassy local-minimum phase.
-- Step i) is a similar process to the Cu calculation in the [previous episode](), but now we are keeping the periodic boundary and using a machine-learned potential. 
+- Step i) is a similar process to the Cu calculation in the [previous episode](https://ase-workshop-2023.github.io/tutorial/10-dynamics/), but now we are keeping the periodic boundary and using a machine-learned potential. 
 - It should take a few minutes to run.
 
 ~~~

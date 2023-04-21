@@ -20,7 +20,7 @@ keypoints:
 ---
 
 > ## Code connection
-> In this chapter we explore the [`ase.calculatorse.emt` module](https://wiki.fysik.dtu.dk/ase/ase/calculators/emt.html#module-ase.calculators.emt) and [`ase.calculatorse.lj` module](https://wiki.fysik.dtu.dk/ase/ase/calculators/others.html#module-ase.calculators.lj), both of which provide built-in tools for calculating standard properties (energy, forces and stress) from a set of atomic positions.
+> In this episode we explore the [`ase.calculatorse.emt` module](https://wiki.fysik.dtu.dk/ase/ase/calculators/emt.html#module-ase.calculators.emt) and [`ase.calculatorse.lj` module](https://wiki.fysik.dtu.dk/ase/ase/calculators/others.html#module-ase.calculators.lj), both of which provide built-in tools for calculating standard properties (energy, forces and stress) from a set of atomic positions.
 {: .callout}
 
 ### Atoms objects can calculate properties using an attached "Calculator"
@@ -55,6 +55,7 @@ keypoints:
 ~~~
 from ase import Atoms
 from ase.calculators.emt import EMT
+from ase.visualize import view
 
 def make_wire(spacing: float = 2.5,
               box_size: float = 10.0) -> Atoms:
@@ -66,7 +67,7 @@ def make_wire(spacing: float = 2.5,
     return wire
 
 atoms = make_wire()
-show(atoms)
+view(atoms, viewer='ngl')
 ~~~
 
 <img src="../fig/Gold_wire.png" alt="image of gold wire" width="100">
