@@ -43,6 +43,7 @@ keypoints:
 - First, we import GPAW and create the atoms object
 
 ~~~
+import ase.build
 from gpaw import GPAW, PW
 
 atoms = ase.build.bulk('Cu')
@@ -210,6 +211,7 @@ Date: Tue Apr  4 11:30:36 2023
 - Finally, we plot the results using a matplotlib figure with multiple subplots.
 
 ~~~
+import matplotlib.pyplot as plt
 fig, axes = plt.subplots(nrows=2, sharex=True)
 axes[0].plot(nkpts, energies, 'o-')
 axes[0].set_ylabel('energy / eV') 
@@ -225,6 +227,7 @@ axes[1].set_xlabel('number of k-points')
 - We find that the computational cost per k-point is roughly linear, but the energy convergence is relatively slow. 
 
 ~~~
+import numpy as np
 change_in_energies = np.diff(energies) 
 print(change_in_energies)
 ~~~
@@ -242,7 +245,7 @@ print(change_in_energies)
 {: .callout}
 
 - To split our code over several MPI processes we will use a special GPAW Python interpreter.
-- We will use this to tun a script file named "kpts_parallel.py". This is very similar to the code above, except we will:
+- We will use this to run a script file named "kpts_parallel.py". This is very similar to the code above, except we will:
     - use the `parallel` keyword to switch on k-point parallelisation.
     - write a dictionary of the results to a json file.
 
