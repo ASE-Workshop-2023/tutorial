@@ -81,7 +81,7 @@ velocities:
 
 kinetic energy: 5.209391647215017
 ~~~
-{ :.output}
+{: .output}
 
 - The initial forces should be very small due to symmetry
 
