@@ -345,8 +345,11 @@ axes[2].set_xlabel('number of k-points')
 > mkdir SSSP_1.2.1_PBE_efficiency
 >
 > wget -q https://archive.materialscloud.org/record/file?record_id=1680\&filename=SSSP_1.2.1_PBE_efficiency.tar.gz -O SSSP-efficiency.tar.gz
+> 
 > wget -q https://archive.materialscloud.org/record/file?filename=SSSP_1.2.1_PBE_efficiency.json\&record_id=1732 -O SSSP_1.2.1_PBE_efficiency.json
+> 
 > tar -zxvf SSSP-efficiency.tar.gz -C ./SSSP_1.2.1_PBE_efficiency
+> 
 > mv SSSP_1.2.1_PBE_efficiency.json ./SSSP_1.2.1_PBE_efficiency/
 >
 > {: .bash}
