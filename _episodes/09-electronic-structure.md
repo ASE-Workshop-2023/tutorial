@@ -183,7 +183,8 @@ electrons.update({'conv_thr': 1.e-6})
 {: .python}
 
 - Then we setup the new calculator for bands.
-- We specify a new calculation directory and a new profile
+- We specify a new calculation directory.
+- We use the `profile_4pools`  profile, which passes the `-nk 4` option to `pw.x` and distributes the band structure calculations over 4 autonomous pools.  
 
 ~~~
 bands_directory = Path('./si_fcc/bands').absolute()
