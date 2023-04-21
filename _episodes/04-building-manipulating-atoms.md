@@ -159,7 +159,7 @@ This algorithm is described in more detail in the [ASE docs](https://wiki.fysik.
 {: .callout}
 
 ~~~
-optimal_array = ase.build.find_optimal_cell_shape(si_prim.cell, 4, 'sc', verbose=True)
+optimal_array = ase.build.find_optimal_cell_shape(si_prime.cell, 4, 'sc', verbose=True)
 ~~~
 {: .python}
 
@@ -193,7 +193,7 @@ determinant of optimal transformation matrix: 4
 - We can then pass the 3x3 array to `ase.build.make_supercell` to form a cubic supercell.
 
 ~~~
-cubic_Si_expansion = ase.build.make_supercell(si_prim, optimal_array)
+cubic_Si_expansion = ase.build.make_supercell(si_prime, optimal_array)
 view(cubic_Si_expansion, viewer='ngl')
 ~~~
 
