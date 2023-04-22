@@ -93,7 +93,7 @@ view(crystal, viewer='ngl')
 ~~~
 {: .python}
 
-<img src="../fig/ZnS_crystal.png" alt="image of Zn4S4 with unit cell" width="300">
+<img src="../fig/ZnS.png" alt="image of Zn4S4 with unit cell" width="300">
 
 ### To access information from `Atoms` we use "getter" methods
 
