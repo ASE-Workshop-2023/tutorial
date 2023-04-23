@@ -20,8 +20,10 @@ keypoints:
 
 ### There are many features of ASE we have not yet explored
 
+- If you still have time, there is a bit of extra material on the [next page](../13-extras/index.html)
 - There are some nice resources which compliment what we have covered in this tutorial:
 	- [ASE website tutorials](https://wiki.fysik.dtu.dk/ase/tutorials/tutorials.html)
+      - The [ASE database](https://wiki.fysik.dtu.dk/ase/tutorials/tut06_database/database.html) is especially relevant to this workshop, providing ways to share data and manage large sets of automated calculations.
 	- [CAMD summer school (GPAW) tutorials](https://wiki.fysik.dtu.dk/gpaw/summerschools/summerschool22/summerschool22.html)
     - [The main GPAW tutorials](https://wiki.fysik.dtu.dk/gpaw/tutorialsexercises/tutorialsexercises.html)
 	- Some tutorials are still accessible from the 2019 workshop at Chalmers University of Technology:

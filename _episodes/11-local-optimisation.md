@@ -417,7 +417,6 @@ Stress:
 > ## Exercise: Fixing the symmetry
 > A very useful constraint is the [FixSymmetry](https://wiki.fysik.dtu.dk/ase/ase/constraints.html#the-fixsymmetry-class) class.
 > Find a geometry file for a high-symmetry crystal structure. With a Calculator of your choice, perform a geometry optimization of the lattice vectors and atomic positions while fixing the symmetry.
-> If compute power allows, you may choose to use DFT.
+> If compute power allows, you may choose to use DFT. If using Quantum Espresso, you may find it helpful to look at the SocketIOCalculator setup in the [extra content section](../13-extras/index.html).
 {: .challenge}
-
 
