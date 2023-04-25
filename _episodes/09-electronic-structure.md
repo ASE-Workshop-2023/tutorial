@@ -31,7 +31,7 @@ keypoints:
 
 
 > ## Note
-> This is not a course in DFT; for more details on the terminology used please see other sources, for example...
+> This is not a course in DFT; for more details on the terminology used please see other sources.
 {: .callout}
 
 ### The `tocell()` method can be used to build a FCC lattice
