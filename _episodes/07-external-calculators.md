@@ -65,6 +65,8 @@ si.calc = Potential(param_filename='./Si_PRX_GAP/gp_iter6_sparse9k.xml')
 - Third, we calculate an energy; in this case we place this in a `for` loop and apply a random walk to the positions.
 
 ~~~
+import matplotlib.pyplot as plt
+
 energies = []
 for _ in range(10):
     si.rattle(stdev=0.01)
