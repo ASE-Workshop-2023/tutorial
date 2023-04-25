@@ -22,7 +22,6 @@ keypoints:
 > In this episode we perform parallel calculations with [GPAW](https://wiki.fysik.dtu.dk/gpaw/) and [Quantum Espresso](https://www.quantum-espresso.org/).
 {: .callout}
 
-
 ### To accelerate our calculation we can parallelise the code over several cores
 
 - In the previous tutorial we performed DFT calculations with GPAW using one CPU core.
@@ -139,8 +138,11 @@ axes[2].set_xlabel('number of k-points')
 > mkdir SSSP_1.2.1_PBE_efficiency
 >
 > wget -q https://archive.materialscloud.org/record/file?record_id=1680\&filename=SSSP_1.2.1_PBE_efficiency.tar.gz -O SSSP-efficiency.tar.gz
+> 
 > wget -q https://archive.materialscloud.org/record/file?filename=SSSP_1.2.1_PBE_efficiency.json\&record_id=1732 -O SSSP_1.2.1_PBE_efficiency.json
+> 
 > tar -zxvf SSSP-efficiency.tar.gz -C ./SSSP_1.2.1_PBE_efficiency
+> 
 > mv SSSP_1.2.1_PBE_efficiency.json ./SSSP_1.2.1_PBE_efficiency/
 >
 > {: .bash}

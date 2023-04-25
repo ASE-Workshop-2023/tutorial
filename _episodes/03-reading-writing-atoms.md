@@ -63,7 +63,7 @@ view(imported_crystal, viewer='ngl')
 ~~~
 {: .python}
 
-<img src="../fig/ZnS_crystal.png" alt="image of ZnS structure" width="300">
+<img src="../fig/ZnS.png" alt="image of ZnS structure" width="300">
 
 - Use the vim terminal text editor (or otherwise) to inspect the .cif file
 - Crystallographic Information Framework (CIF) is quite a complicated format because it is designed to hold a lot of data relevant to crystallography. 
