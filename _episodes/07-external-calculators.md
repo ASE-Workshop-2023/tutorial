@@ -58,7 +58,7 @@ si = ase.build.bulk('Si') * 4
 
 - Second we attach a calculator, in this case a `Potential` object imported from `quippy`.
 ~~~
-si.calc = Potential(param_filename='path/to/Si_PRX_GAP/gp_iter6_sparse9k.xml')
+si.calc = Potential(param_filename='./Si_PRX_GAP/gp_iter6_sparse9k.xml')
 ~~~
 {: .python}
 
