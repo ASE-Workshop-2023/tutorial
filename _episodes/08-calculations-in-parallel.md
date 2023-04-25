@@ -11,7 +11,6 @@ objectives:
     - "Save the relevant data in a JSON file for further analysis"
     - "Use the Quantum Espresso code to run a DFT calculation across multiple cores"
 keypoints:
-    - "GPAW includes a special Python interpreter for parallel calculations"
     - "To accelerate our calculation we can parallelise the code over several cores"
     - "`parprint` and `paropen` are provided in ASE as an alternative to `print` and `open`"
     - "Quantum Espresso can also be used for parallel programming with MPI"
