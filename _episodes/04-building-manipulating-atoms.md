@@ -317,7 +317,8 @@ view(antisite, viewer='ngl')
 > > ## Solution
 > >
 > > ~~~
-> > sulfur_sublattice = [i for i, atom in enumerate(crystal) if atom.symbol == 'S']
+> > sulfur_indices = [i for i, atom in enumerate(crystal) if atom.symbol == 'S']
+> > sulfur_sublattice = crystal[sulfur_indices]
 > > sulfur_sublattice.translate([.3, 0., 0.])
 > > view(zinc_sublattice + sulfur_sublattice, viewer='ngl')
 > > ~~~
