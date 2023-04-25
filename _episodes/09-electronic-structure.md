@@ -87,7 +87,7 @@ atomic_species = {'Si':dj['Si']['filename']}
 ~~~
 control = {'calculation': "scf",
            'prefix': "si_fcc",
-           'outdir': str(Path('./si_fcc/out).absolute()) ,
+           'outdir': str(Path('./si_fcc/out').absolute()) ,
            'pseudo_dir': str(pseudo_dir),
            'tprnfor': True,
            'tstress': True}
