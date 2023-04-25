@@ -126,7 +126,7 @@ profile_4pools = EspressoProfile(plain_argv + pools_argv)
 ~~~
 from ase.calculators.espresso import Espresso 
 
-scf_directory = Path('./si_fcc/scf/).absolute()
+scf_directory = Path('./si_fcc/scf/').absolute()
 
 scf_calc = Espresso(directory=scf_directory,
                 profile=profile,
