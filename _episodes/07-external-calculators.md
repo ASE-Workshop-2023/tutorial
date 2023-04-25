@@ -4,23 +4,21 @@ teaching: 15
 exercises: 20
 questions:
     - "How can I calculate standard properties using an external calculator?"
-    - "How can I calculate standard properties using a machine learnt potential?"
+    - "How can I calculate standard properties using a machine learned potential?"
     - "What is a convenient way to test for k-point convergence?"
 objectives:
-    - "Calculate properties using an external calculator and machine learnt potential"
+    - "Calculate properties using an external calculator and machine learned potential"
     - "Perform a convergence test for density-functional theory calculation parameters"
 keypoints:
     - "The `quippy` package provides a Python interface to a range of interatomic and tight-binding potentials"
-    - "GPAW is a package for electronic structure calculations which relies on ASE"
     - "The workflow for external, file-based and built-in calculators is the same"
+    - "GPAW is a package for electronic structure calculations which relies on ASE"
+    - "You can use GPAW to perform a DFT calculation from the Python shell"
     - "It is important to check for convergence of DFT energies with respect to k-point sampling"
-
-    - "Quantum Espresso is a suite of programs for electronic structure calculations "
-    - "Socket interfaces allow more efficient communication and data re-use"
 ---
 
 > ## Code connection
-> In this episode we explore two external calculators: [Quippy](http://libatoms.github.io/QUIP/), which provides an interface to a range of interatomic and tight-binding potentials, including [Gaussian Approximation Potentials](https://libatoms.github.io/GAP/), and Socket calculations using the electronic structure code [Quantum Espresso](https://www.quantum-espresso.org/).
+> In this episode we explore two external calculators: [Quippy](http://libatoms.github.io/QUIP/), which provides an interface to a range of interatomic and tight-binding potentials, including [Gaussian Approximation Potentials](https://libatoms.github.io/GAP/), and the DFT calculator [GPAW](https://wiki.fysik.dtu.dk/gpaw/).
 {: .callout}
 
 ### The `quippy` package provides a Python interface to a range of interatomic and tight-binding potentials
@@ -84,7 +82,7 @@ ax.set_ylabel('Energy / eV')
 - This is a bit more expensive than EMT but still a lot cheaper than density-functional theory!
 - A lot of work goes into developing a new potential, but with tools like quippy and ASE it is fairly easy for researchers to pick up the resulting model and apply it.
 
-### "GPAW is a package for electronic structure calculations which relies on ASE"
+### GPAW is a package for electronic structure calculations which relies on ASE
 
 - GPAW is an electronic structure code implemented as a Python library with C backend.
 - GPAW includes a few command line tools, but is generally always used with ASE.
@@ -96,7 +94,7 @@ ax.set_ylabel('Energy / eV')
 {: .callout} 
 
 
-### Performing a DFT calculation from the Python shell
+### You can use GPAW to perform a DFT calculation from the Python shell
 
 - To begin with, we run a single-point energy calculation using Kohn-Sham density-functional theory (DFT).
 - First, we import GPAW and create the atoms object
