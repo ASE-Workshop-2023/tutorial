@@ -368,6 +368,7 @@ Energy per atom: Epot = 0.457eV  Ekin = 0.055eV (T=423K)  Etot = 0.512eV
 
 > ## Discussion
 > Note that the trajectory writer is directed to the original Si Atoms object, not the filtered version. Why?.
+{: .discussion}
 
 ~~~
 from ase.constraints import ExpCellFilter
