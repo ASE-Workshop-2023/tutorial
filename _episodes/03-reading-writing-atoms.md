@@ -38,7 +38,7 @@ keypoints:
 > ~~~
 > %%bash 
 > 
-> wget https://github.com/ASE-Workshop-2023/tutorial/blob/gh-pages/data/ZnS.cif
+> wget https://raw.githubusercontent.com/ASE-Workshop-2023/tutorial/gh-pages/data/ZnS.cif
 > ~~~
 > {: .bash}
 > 
