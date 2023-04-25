@@ -38,7 +38,7 @@ view(g2_n2, viewer='ngl')
 ~~~
 {: .python}
 
-<img src="../fig/N2.png" alt="image of N2" width="100">
+<img src="../fig/view_molecule.png" alt="image of N2" width="200">
 
 - If we inspect the type of `g2_n2` we see that it is an `Atoms` object, just like that we created manually in earlier episodes.
 
@@ -317,7 +317,8 @@ view(antisite, viewer='ngl')
 > > ## Solution
 > >
 > > ~~~
-> > sulfur_sublattice = [i for i, atom in enumerate(crystal) if atom.symbol == 'S']
+> > sulfur_indices = [i for i, atom in enumerate(crystal) if atom.symbol == 'S']
+> > sulfur_sublattice = crystal[sulfur_indices]
 > > sulfur_sublattice.translate([.3, 0., 0.])
 > > view(zinc_sublattice + sulfur_sublattice, viewer='ngl')
 > > ~~~

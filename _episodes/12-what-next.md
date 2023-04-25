@@ -20,26 +20,33 @@ keypoints:
 
 ### There are many features of ASE we have not yet explored
 
+- If you still have time, there is a bit of extra material on the [next page](../13-extras/index.html)
 - There are some nice resources which compliment what we have covered in this tutorial:
-	- ASE website tutorials
-	- [CAMD summer school tutorials](https://wiki.fysik.dtu.dk/gpaw/summerschools/summerschool22/summerschool22.html)
-	- Adam's crystal symmetry tutorial
-	- Paper associated with ASE: https://iopscience.iop.org/article/10.1088/1361-648X/aa680e
+	- [ASE website tutorials](https://wiki.fysik.dtu.dk/ase/tutorials/tutorials.html)
+      - The [ASE database](https://wiki.fysik.dtu.dk/ase/tutorials/tut06_database/database.html) is especially relevant to this workshop, providing ways to share data and manage large sets of automated calculations.
+	- [CAMD summer school (GPAW) tutorials](https://wiki.fysik.dtu.dk/gpaw/summerschools/summerschool22/summerschool22.html)
+    - [The main GPAW tutorials](https://wiki.fysik.dtu.dk/gpaw/tutorialsexercises/tutorialsexercises.html)
+	- Some tutorials are still accessible from the 2019 workshop at Chalmers University of Technology:
+      - [Crystal symmetry and spglib](https://ajjackson.github.io/ase-tutorial-symmetry/)
+      - [Cluster expansions with icet](https://ase-workshop.materialsmodeling.org/tutorials/icet/)
+      - [Force constant extration with hiphive](https://ase-workshop.materialsmodeling.org/tutorials/hiphive/)
+    - The research paper describing ASE: https://iopscience.iop.org/article/10.1088/1361-648X/aa680e
 
 ### There are ways to ask for help
 
-- If problem with code: when and how to raise a Gitlab issue
-- Discussion board or similar?
-- Materials science discussion boards?
-- Is there an ASE mailing list or similar
+- Often the quickest way to get help from ASE developers and users is the `#ase` channel on [Matrix](https://matrix.to/#/!JEiuNJLuxedbohAOuH:matrix.org); this chat environment is convenient to access via the [Element](https://app.element.io/#/room/#ase:matrix.org) web client.
+- There is also a traditional email [mailing list](https://listserv.fysik.dtu.dk/mailman/listinfo/ase-users).
+- There is an [ASE forum](https://matsci.org/c/ase/36) on the [Materials Science Community Forum](https://matsci.org/). The ASE forum is not very active at the moment, but with a few more users that might change...
+- If you have found a problem with the code, have a detailed feature request or other development-related issue to raise, the [Gitlab](https://gitlab.com/ase/ase/-/issues) issue tracker is the appropriate place to raise it.
 
-### ASE welcomes contributions
+### ASE is a community project
 
-- Need some input from developers here...
-- ASE is an open source project that depends on community contributions
-- Not all contributions need to be code!
-- Not all code contributions can be accepted - make clear scope and expectations
-- Promote Hackathons 
+- ASE is an open source project that depends on community contribution
+  - Good projects should provide information about how to contribute: [here are the relevant ASE docs](https://wiki.fysik.dtu.dk/ase/development/development.html)
+- Not all contributions need to be code! Improvements to documentation and examples are useful.
+- More code does also mean more bugs and more maintenance. Liberty is good Free beer is popular. Free puppies are... complicated.
+- With this in mind, some of the best code contributions are unit tests!
+- As you explore the ASE modules you will probably find useful tools that are in need of a good tutorial.
 
 ### If you find ASE useful in your research, please cite accordingly
 
