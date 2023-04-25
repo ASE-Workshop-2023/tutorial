@@ -36,7 +36,7 @@ keypoints:
 > %%bash
 >
 > wget -q https://www.repository.cam.ac.uk/bitstream/handle/1810/317974/Si_PRX_GAP.zip
-> unzip Si_PRX_GAP.zip
+> unzip Si_PRX_GAP.zip -d ./Si_PRX_GAP
 > ~~~
 > {: .bash}
 >
