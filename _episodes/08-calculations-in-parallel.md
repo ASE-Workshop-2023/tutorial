@@ -163,7 +163,7 @@ profile = EspressoProfile(['mpirun', 'pw.x'])
 - For QE, the content of `input_data` contains the parameters for the calculation input file.
 
 ~~~
-pseudo_dir = './SSSP-1.2.1_PBE_efficiency'
+pseudo_dir = Path.home() / 'SSSP-1.2.1_PBE_efficiency'
 
 calc = Espresso(profile=profile,
                 pseudo_dir=pseudo_dir,
