@@ -67,7 +67,7 @@ si_fcc = Atoms(symbols='Si2',
 from pathlib import Path
 import json
 
-pseudo_dir = Path.home() / 'SSSP-1.2.1_PBE_efficiency'
+pseudo_dir = Path.home() / 'SSSP_1.2.1_PBE_efficiency'
 with open(str(pseudo_dir / 'SSSP_1.2.1_PBE_efficiency.json')) as fj:
   dj = json.load(fj) 
 ecutwfc = dj['Si']['cutoff_wfc']
