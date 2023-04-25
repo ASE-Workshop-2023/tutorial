@@ -282,6 +282,8 @@ axes[1].set_xlabel('number of k-points')
 - We find that the computational cost per k-point is roughly linear, but the energy convergence is relatively slow. 
 
 ~~~
+import numpy as np
+
 change_in_energies = np.diff(energies) 
 print(change_in_energies)
 ~~~
