@@ -331,3 +331,7 @@ view(frames, viewer='ngl')
 {: .python}
 
 <img src="../fig/Cu_quench.png" alt="Cu quenches" width="250">
+
+### extras
+
+in the attached archive you will find some fully worked examples of LJonesium NVE, NVT and NPT. Also a simple example of how to do a dynamic NEB optimisation for a small molecule. 
