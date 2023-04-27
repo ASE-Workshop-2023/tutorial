@@ -132,6 +132,7 @@ axes[2].set_xlabel('number of k-points')
 
 > ## Getting the data
 > We will use the SSSP-efficiency pseudopotential set. To download these from a Jupyter Notebook run the following in a cell:
+> 
 > ~~~
 > %%bash
 > 
@@ -144,7 +145,7 @@ axes[2].set_xlabel('number of k-points')
 > tar -zxvf SSSP-efficiency.tar.gz -C ./SSSP_1.2.1_PBE_efficiency
 > 
 > mv SSSP_1.2.1_PBE_efficiency.json ./SSSP_1.2.1_PBE_efficiency/
->
+> ~~~
 > {: .bash}
 {: .callout}
 
