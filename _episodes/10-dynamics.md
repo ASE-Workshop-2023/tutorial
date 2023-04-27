@@ -39,10 +39,10 @@ keypoints:
 > This is not a course in MD; be aware that thermostats and timesteps should be chosen with care for a given research problem.
 {: .callout}
 
-- Using the EMT potential, let us try some simulated annealing (controlled heating and cooling) of cubic Cu. 
+- Using the EMT potential, let us try some simulated annealing (controlled heating and cooling) of cubic Cu.
 - There are three preparation steps:
 	- Build the structure
-	- Attach a calculator 
+	- Attach a calculator
 	- Assign initial momenta.
 
 ~~~
@@ -102,7 +102,7 @@ forces:
 
 ### Create a dynamics object and then attach `Atoms`
 
-- Next the dynamics object is created and the `Atoms` are attached to it. 
+- Next the dynamics object is created and the `Atoms` are attached to it.
 - For constant-energy MD we can use the [Velocity Verlet method](https://wiki.fysik.dtu.dk/ase/ase/md.html#velocity-verlet-dynamics).
 - While the default distance and energy units (Angstrom and eV) in ASE are fairly friendly, the related time unit is a bit awkward so we use a unit conversion from `ase.units` to set a timestep of 5 fs.
 
@@ -155,7 +155,7 @@ def printenergy(atoms: Atoms) -> None:
     epot = atoms.get_potential_energy() / len(atoms)
     ekin = atoms.get_kinetic_energy() / len(atoms)
     temperature = ekin / (1.5 * units.kB)
-    
+
     print(f'Energy per atom: Epot = {epot:.3f}eV  Ekin = {ekin:.3f}eV '
           f'(T={temperature:3.0f}K)  Etot = {epot+ekin:.3f}eV')
 
@@ -206,7 +206,7 @@ Energy per atom: Epot = 0.018eV  Ekin = 0.024eV (T=189K)  Etot = 0.043eV
 ~~~
 def energy_observer():
     printenergy(cu_cube)
-    
+
 dyn.attach(energy_observer, interval=10)
 dyn.run(100)
 ~~~
@@ -238,7 +238,7 @@ dyn.run(100)
 
 ### Attach a `Trajectory` object to track atom positions
 
-- At modest temperature and under periodic boundary conditions, the atoms have not moved very far. 
+- At modest temperature and under periodic boundary conditions, the atoms have not moved very far.
 
 ~~~
 from ase.visualize import view
@@ -249,7 +249,7 @@ view(cu_cube, viewer='ngl')
 
 <img src="../fig/Cu_MD.png" alt="Cu MD structure after one timestep" width="250">
 
-- Let's try something more extreme: 
+- Let's try something more extreme:
 	- remove the boundary conditions
 	- increase the temperature
 	- regulate the temperature with a Langevin thermostat
@@ -334,4 +334,5 @@ view(frames, viewer='ngl')
 
 ### extras
 
-in the attached archive you will find some fully worked examples of LJonesium NVE, NVT and NPT. Also a simple example of how to do a dynamic NEB optimisation for a small molecule. 
+in the attached archive you will find some fully worked examples of LJonesium NVE, NVT and NPT. Also a simple example of how to do a dynamic NEB optimisation for a small molecule.
+[extra md](https://github.com/ASE-Workshop-2023/tutorial/tree/gh-pages/data/extra_md.tar.xz)
